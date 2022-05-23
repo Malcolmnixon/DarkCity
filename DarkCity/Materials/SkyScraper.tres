@@ -1,0 +1,21 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://assets/ambientcg.com/facade014/Facade014_1K_Roughness.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/ambientcg.com/facade014/Facade014_1K_Emission.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/ambientcg.com/facade014/Facade014_1K_Color.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/ambientcg.com/facade014/Facade014_1K_NormalGL.jpg" type="Texture" id=4]
+
+[resource]
+albedo_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 2 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 4 )
+uv1_scale = Vector3( 0.01, 0.01, 0.01 )
+uv1_triplanar = true

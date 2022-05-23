@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/565491__jakegwizdak__wind-loop.mp3-6af6fbc3485ab1187d583e00a38a3ad3.mp3str"
+
+[deps]
+
+source_file="res://assets/freesound.org/565491__jakegwizdak__wind-loop.mp3"
+dest_files=[ "res://.import/565491__jakegwizdak__wind-loop.mp3-6af6fbc3485ab1187d583e00a38a3ad3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

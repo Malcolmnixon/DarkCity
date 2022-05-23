@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Evil Incoming.mp3-81bac9002ec61edec89bb361b9992486.mp3str"
+
+[deps]
+
+source_file="res://assets/freepd.com/Evil Incoming.mp3"
+dest_files=[ "res://.import/Evil Incoming.mp3-81bac9002ec61edec89bb361b9992486.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
