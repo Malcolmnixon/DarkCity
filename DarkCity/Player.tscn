@@ -60,6 +60,7 @@ jump_button_id = 7
 eye_forward_offset = 0.5
 
 [node name="Function_Climb_movement" parent="." index="5" instance=ExtResource( 5 )]
+fling_multiplier = 2.0
 left_pickup = NodePath("../LeftHandController/Function_Pickup")
 right_pickup = NodePath("../RightHandController/Function_Pickup")
 
