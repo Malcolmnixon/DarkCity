@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/487725__matrixxx__ticking-timer-05-sec.mp3-9829ecb4e76053e368ebf79f11f69b76.mp3str"
+
+[deps]
+
+source_file="res://assets/freesound.org/487725__matrixxx__ticking-timer-05-sec.mp3"
+dest_files=[ "res://.import/487725__matrixxx__ticking-timer-05-sec.mp3-9829ecb4e76053e368ebf79f11f69b76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

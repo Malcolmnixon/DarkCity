@@ -8,7 +8,7 @@
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/freepd.com/Evil Incoming.mp3" type="AudioStream" id=8]
-[ext_resource path="res://DarkCity/PlayerSounds.gd" type="Script" id=9]
+[ext_resource path="res://DarkCity/Player/PlayerSounds.gd" type="Script" id=9]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=12]
