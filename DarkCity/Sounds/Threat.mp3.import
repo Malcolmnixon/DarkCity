@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str"
+
+[deps]
+
+source_file="res://DarkCity/Sounds/Threat.mp3"
+dest_files=[ "res://.import/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

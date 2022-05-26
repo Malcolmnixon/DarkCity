@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/freepd.com/Evil Incoming.mp3" type="AudioStream" id=8]
-[ext_resource path="res://DarkCity/Player/PlayerSounds.gd" type="Script" id=9]
+[ext_resource path="res://DarkCity/Player/PlayerLogic.gd" type="Script" id=9]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=12]
@@ -16,6 +16,17 @@
 [ext_resource path="res://assets/freesound.org/565491__jakegwizdak__wind-loop.mp3" type="AudioStream" id=14]
 [ext_resource path="res://assets/freesound.org/231438__6polnic__hamp-rope-creaks.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" type="AudioStream" id=16]
+[ext_resource path="res://DarkCity/Player/DeathFade.gd" type="Script" id=17]
+
+[sub_resource type="CubeMesh" id=1]
+flip_faces = true
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+albedo_color = Color( 0.431373, 0, 0, 0 )
 
 [node name="Player" instance=ExtResource( 1 )]
 
@@ -25,6 +36,16 @@ refresh_rate = 0.0
 
 [node name="ARVRCamera" parent="." index="1"]
 far = 2000.0
+
+[node name="DeathFade" type="Spatial" parent="ARVRCamera" index="0"]
+script = ExtResource( 17 )
+
+[node name="DeathMesh" type="MeshInstance" parent="ARVRCamera/DeathFade" index="0"]
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="ARVRCamera/DeathFade" index="1"]
 
 [node name="LeftHand" parent="LeftHandController" index="0" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
@@ -66,23 +87,24 @@ right_pickup = NodePath("../RightHandController/Function_Pickup")
 
 [node name="Function_Glide_movement" parent="." index="6" instance=ExtResource( 6 )]
 
-[node name="PlayerSounds" type="Spatial" parent="." index="7"]
+[node name="PlayerLogic" type="Spatial" parent="." index="7"]
 script = ExtResource( 9 )
 
-[node name="GameMusic" type="AudioStreamPlayer3D" parent="PlayerSounds" index="0"]
+[node name="GameMusic" type="AudioStreamPlayer3D" parent="PlayerLogic" index="0"]
 stream = ExtResource( 8 )
+unit_db = -7.826
 autoplay = true
 
-[node name="GlideSound" type="AudioStreamPlayer3D" parent="PlayerSounds" index="1"]
+[node name="GlideSound" type="AudioStreamPlayer3D" parent="PlayerLogic" index="1"]
 stream = ExtResource( 14 )
 
-[node name="GrappleFire" type="AudioStreamPlayer3D" parent="PlayerSounds" index="2"]
+[node name="GrappleFire" type="AudioStreamPlayer3D" parent="PlayerLogic" index="2"]
 stream = ExtResource( 16 )
 
-[node name="GrappleSwing" type="AudioStreamPlayer3D" parent="PlayerSounds" index="3"]
+[node name="GrappleSwing" type="AudioStreamPlayer3D" parent="PlayerLogic" index="3"]
 stream = ExtResource( 15 )
 
-[connection signal="grapple_finished" from="RightHandController/Function_Grapple_movement" to="PlayerSounds" method="_on_Function_Grapple_movement_grapple_finished"]
-[connection signal="grapple_started" from="RightHandController/Function_Grapple_movement" to="PlayerSounds" method="_on_Function_Grapple_movement_grapple_started"]
-[connection signal="player_glide_end" from="Function_Glide_movement" to="PlayerSounds" method="_on_Function_Glide_movement_player_glide_end"]
-[connection signal="player_glide_start" from="Function_Glide_movement" to="PlayerSounds" method="_on_Function_Glide_movement_player_glide_start"]
+[connection signal="grapple_finished" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]
+[connection signal="grapple_started" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]
+[connection signal="player_glide_end" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_end"]
+[connection signal="player_glide_start" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_start"]

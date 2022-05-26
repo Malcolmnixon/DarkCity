@@ -1,6 +1,10 @@
 extends Spatial
 
 
+func die():
+	$"../ARVRCamera/DeathFade".death_fade()
+	$"../PlayerBody".enabled = false
+
 func _on_Function_Grapple_movement_grapple_started():
 	$GrappleFire.play()
 	$GrappleSwing.play()

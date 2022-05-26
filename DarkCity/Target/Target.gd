@@ -1,10 +1,8 @@
 extends Spatial
 
+signal target_diffused
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var target_active := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,5 +10,10 @@ func _ready():
 
 
 func _on_Fuse_picked_up(pickable):
+	if not target_active:
+		return
+	
 	$TickingSound.stop()
 	$Highlight.visible = false
+	
+	emit_signal("target_diffused")

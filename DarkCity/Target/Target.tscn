@@ -44,7 +44,7 @@ flags_unshaded = true
 params_blend_mode = 1
 albedo_texture = SubResource( 3 )
 
-[node name="Target" type="Spatial"]
+[node name="Target" type="Spatial" groups=["target"]]
 script = ExtResource( 3 )
 
 [node name="Bomb" type="StaticBody" parent="."]

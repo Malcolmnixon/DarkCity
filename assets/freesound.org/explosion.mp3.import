@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/explosion.mp3-1324bc0a287c08c82d0de72df04fa822.mp3str"
+
+[deps]
+
+source_file="res://assets/freesound.org/explosion.mp3"
+dest_files=[ "res://.import/explosion.mp3-1324bc0a287c08c82d0de72df04fa822.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
