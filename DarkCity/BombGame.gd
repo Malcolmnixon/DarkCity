@@ -28,16 +28,16 @@ func _start_threat():
 	$ThreatMessage.play()
 
 func _on_ThreatMessage_finished():
-	# Show all targets
+	# Enable all targets
 	for t in targets:
-		t.visible = true
+		t.enable()
 
 	# Start the game countdown
 	countdown = Timer.new()
 	add_child(countdown)
 	countdown.connect("timeout", self, "_on_countdown_finished")
 	countdown.one_shot = true
-	countdown.start(300.0)
+	countdown.start(120.0)
 
 func _on_target_diffused():
 	# Count down until all targets diffused

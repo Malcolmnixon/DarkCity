@@ -2,18 +2,20 @@ extends Spatial
 
 signal target_diffused
 
-var target_active := true
+var bomb : Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Detach the bomb until its enabled
+	bomb = $Bomb
+	remove_child(bomb)
 
+func enable():
+	add_child(bomb)
 
 func _on_Fuse_picked_up(pickable):
-	if not target_active:
-		return
-	
-	$TickingSound.stop()
-	$Highlight.visible = false
+	$Bomb/TickingSound.stop()
+	$Bomb/Highlight.visible = false
+	$Bomb/Fuse.visible = false
 	
 	emit_signal("target_diffused")

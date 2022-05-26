@@ -20,31 +20,24 @@ script = ExtResource( 4 )
 
 [node name="Target1" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( -0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, -0.34202, -84.8, 150, -15 )
-visible = false
 
 [node name="Target2" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 7, 132.9, 87.1 )
-visible = false
 
 [node name="Target3" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -69.9, 69, -43 )
-visible = false
 
 [node name="Target4" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 77.5, 123.3, -81.8 )
-visible = false
 
 [node name="Target5" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 78, 92, -3 )
-visible = false
 
 [node name="Target6" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -34, 139, 9.3 )
-visible = false
 
 [node name="Target7" parent="BombGame" instance=ExtResource( 3 )]
 transform = Transform( 0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -71.9, 138.6, -71.8 )
-visible = false
 
 [node name="ThreatMessage" type="AudioStreamPlayer" parent="BombGame"]
 stream = ExtResource( 5 )
