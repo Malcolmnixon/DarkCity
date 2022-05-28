@@ -13,9 +13,9 @@ func _ready():
 func enable():
 	add_child(bomb)
 
-func _on_Fuse_picked_up(pickable):
+func _on_Fuse_picked_up(_pickable):
 	$Bomb/TickingSound.stop()
 	$Bomb/Highlight.visible = false
-	$Bomb/Fuse.visible = false
+	$Bomb/Fuse.drop_and_free()
 	
 	emit_signal("target_diffused")
