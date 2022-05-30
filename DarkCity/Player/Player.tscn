@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/freesound.org/231438__6polnic__hamp-rope-creaks.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" type="AudioStream" id=16]
 [ext_resource path="res://DarkCity/Player/DeathFade.gd" type="Script" id=17]
+[ext_resource path="res://addons/kenney_particle_pack/trace_01.png" type="Texture" id=18]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -27,6 +28,25 @@ flags_transparent = true
 flags_unshaded = true
 flags_no_depth_test = true
 albedo_color = Color( 0.431373, 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_unshaded = true
+params_blend_mode = 1
+params_cull_mode = 2
+params_billboard_mode = 2
+albedo_color = Color( 0.521569, 0.521569, 0.521569, 1 )
+albedo_texture = ExtResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 50, 20, 50 )
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+
+[sub_resource type="QuadMesh" id=5]
+size = Vector2( 0.4, 0.4 )
 
 [node name="Player" instance=ExtResource( 1 )]
 
@@ -53,7 +73,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 [node name="Function_Pickup" parent="LeftHandController" index="1" instance=ExtResource( 4 )]
 
 [node name="Function_Direct_movement" parent="LeftHandController" index="2" instance=ExtResource( 11 )]
-max_speed = 3.0
+max_speed = 5.0
 strafe = true
 
 [node name="Function_Jump_movement" parent="LeftHandController" index="3" instance=ExtResource( 7 )]
@@ -65,7 +85,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 [node name="Function_Pickup" parent="RightHandController" index="1" instance=ExtResource( 4 )]
 
 [node name="Function_Direct_movement" parent="RightHandController" index="2" instance=ExtResource( 11 )]
-max_speed = 3.0
+max_speed = 5.0
 
 [node name="Function_Turn_movement" parent="RightHandController" index="3" instance=ExtResource( 13 )]
 smooth_rotation = true
@@ -103,6 +123,17 @@ stream = ExtResource( 16 )
 
 [node name="GrappleSwing" type="AudioStreamPlayer3D" parent="PlayerLogic" index="3"]
 stream = ExtResource( 15 )
+
+[node name="Particles" type="Particles" parent="." index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+material_override = SubResource( 3 )
+cast_shadow = 0
+extra_cull_margin = 180.0
+amount = 500
+lifetime = 3.0
+local_coords = false
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
 
 [connection signal="grapple_finished" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]
 [connection signal="grapple_started" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]

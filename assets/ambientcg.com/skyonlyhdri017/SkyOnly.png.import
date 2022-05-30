@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stormy_clouds.png-f616ed5a1b0a51ad6a0912057fafb875.stex"
+path="res://.import/SkyOnly.png-8be40aaef5d4e4d55bb356de207ddcfe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/opengameart.org/stormy_clouds.png"
-dest_files=[ "res://.import/stormy_clouds.png-f616ed5a1b0a51ad6a0912057fafb875.stex" ]
+source_file="res://assets/ambientcg.com/skyonlyhdri017/SkyOnly.png"
+dest_files=[ "res://.import/SkyOnly.png-8be40aaef5d4e4d55bb356de207ddcfe.stex" ]
 
 [params]
 

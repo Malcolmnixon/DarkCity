@@ -37,7 +37,7 @@ func _on_ThreatMessage_finished():
 	add_child(countdown)
 	countdown.connect("timeout", self, "_on_countdown_finished")
 	countdown.one_shot = true
-	countdown.start(120.0)
+	countdown.start(180.0)
 
 func _on_target_diffused():
 	# Count down until all targets diffused
@@ -59,7 +59,7 @@ func _on_victory():
 	$Victory.play()
 
 	# Wait for 10 seconds
-	yield(get_tree().create_timer(10.0), "timeout")
+	yield(get_tree().create_timer(30.0), "timeout")
 
 	# Restart the game
 	get_tree().reload_current_scene()
