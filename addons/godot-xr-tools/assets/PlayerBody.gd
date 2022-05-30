@@ -197,7 +197,7 @@ func _physics_process(delta):
 	ground_control_velocity = Vector2.ZERO
 	var exclusive := false
 	for p in _movement_providers:
-		if p.enabled or p.is_active or !exclusive:
+		if p.is_active or (p.enabled and not exclusive):
 			if p.physics_movement(delta, self, exclusive):
 				exclusive = true
 
@@ -277,7 +277,7 @@ func _update_body_under_camera():
 # This method updates the information about the ground under the players feet
 func _update_ground_information():
 	# Update the ground information
-	var ground_collision := kinematic_node.move_and_collide(Vector3(0.0, -0.05, 0.0), true, true, true)
+	var ground_collision := kinematic_node.move_and_collide(Vector3(0.0, -0.1, 0.0), true, true, true)
 	if !ground_collision:
 		on_ground = false
 		ground_vector = Vector3.UP
