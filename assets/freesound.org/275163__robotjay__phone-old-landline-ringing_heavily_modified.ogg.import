@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/275163__robotjay__phone-old-landline-ringing_heavily_modified.ogg-c38c6d07bc0c417c2c5536b379e2ed59.oggstr"
+
+[deps]
+
+source_file="res://assets/freesound.org/275163__robotjay__phone-old-landline-ringing_heavily_modified.ogg"
+dest_files=[ "res://.import/275163__robotjay__phone-old-landline-ringing_heavily_modified.ogg-c38c6d07bc0c417c2c5536b379e2ed59.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

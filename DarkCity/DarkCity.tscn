@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://DarkCity/Map/DarkCityMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkCity/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://DarkCity/Target/Target.tscn" type="PackedScene" id=3]
 [ext_resource path="res://DarkCity/BombGame.gd" type="Script" id=4]
-[ext_resource path="res://DarkCity/Sounds/Threat.mp3" type="AudioStream" id=5]
+[ext_resource path="res://DarkCity/Sounds/RadioChatter_1b.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/freesound.org/explosion.mp3" type="AudioStream" id=6]
-[ext_resource path="res://assets/freesound.org/171671__leszek-szary__success-1.mp3" type="AudioStream" id=7]
+[ext_resource path="res://DarkCity/Sounds/RadioChatter_5a.ogg" type="AudioStream" id=7]
+[ext_resource path="res://DarkCity/Sounds/RadioChatter_2.ogg" type="AudioStream" id=8]
+[ext_resource path="res://DarkCity/Sounds/RadioChatter_3.ogg" type="AudioStream" id=9]
+[ext_resource path="res://DarkCity/Sounds/RadioChatter_4.ogg" type="AudioStream" id=10]
 
 [node name="World" type="Spatial"]
 
@@ -43,13 +46,22 @@ transform = Transform( 0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -
 stream = ExtResource( 5 )
 volume_db = 3.0
 
+[node name="Taunt1" type="AudioStreamPlayer" parent="BombGame"]
+stream = ExtResource( 8 )
+
+[node name="Taunt2" type="AudioStreamPlayer" parent="BombGame"]
+stream = ExtResource( 9 )
+
+[node name="Taunt3" type="AudioStreamPlayer" parent="BombGame"]
+stream = ExtResource( 10 )
+
 [node name="Explosion" type="AudioStreamPlayer" parent="BombGame"]
 stream = ExtResource( 6 )
 
 [node name="Victory" type="AudioStreamPlayer" parent="BombGame"]
 stream = ExtResource( 7 )
 
-[node name="ThreatTimer" type="Timer" parent="BombGame"]
+[node name="TauntTimer" type="Timer" parent="BombGame"]
 wait_time = 10.0
 one_shot = true
 autostart = true
@@ -61,5 +73,5 @@ one_shot = true
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]
 [connection signal="finished" from="BombGame/Victory" to="BombGame" method="_on_Victory_finished"]
-[connection signal="timeout" from="BombGame/ThreatTimer" to="BombGame" method="_on_ThreatTimer_timeout"]
+[connection signal="timeout" from="BombGame/TauntTimer" to="BombGame" method="_on_TauntTimer_timeout"]
 [connection signal="timeout" from="BombGame/BombsTimer" to="BombGame" method="_on_BombsTimer_timeout"]

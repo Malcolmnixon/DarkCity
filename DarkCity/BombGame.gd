@@ -11,6 +11,7 @@ var targets : Array
 var targets_remaining : int
 var countdown : Timer
 var alive := true
+var taunt := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,8 +39,20 @@ func _on_target_diffused():
 	if targets_remaining == 0:
 		_on_victory()
 
+
+func _stop_all():
+	# Stop game timers and sounds
+	$ThreatMessage.stop()
+	$Taunt1.stop()
+	$Taunt2.stop()
+	$Taunt3.stop()
+	$TauntTimer.stop()
+	$BombsTimer.stop()
+
+
 func _on_death_by_bombs():
 	# Play explosion sound
+	_stop_all()
 	$Explosion.play()
 
 
@@ -49,9 +62,7 @@ func _on_Explosion_finished():
 
 func _on_death_by_falling():
 	# Stop game timers and sounds
-	$ThreatMessage.stop()
-	$ThreatTimer.stop()
-	$BombsTimer.stop()
+	_stop_all()
 
 	# Wait for 5 seconds then restart the game
 	yield(get_tree().create_timer(5.0), "timeout")
@@ -60,9 +71,7 @@ func _on_death_by_falling():
 
 func _on_death_by_drowning():
 	# Stop game timers and sounds
-	$ThreatMessage.stop()
-	$ThreatTimer.stop()
-	$BombsTimer.stop()
+	_stop_all()
 
 	# Wait for 5 seconds then restart the game
 	yield(get_tree().create_timer(5.0), "timeout")
@@ -70,8 +79,10 @@ func _on_death_by_drowning():
 
 
 func _on_victory():
-	# Stop game timer and play victory sound
-	$BombsTimer.stop()
+	# Stop game timers and sounds
+	_stop_all()
+	
+	# Play the victory sound
 	$Victory.play()
 
 
@@ -83,11 +94,6 @@ func _on_Victory_finished():
 	get_tree().reload_current_scene()
 
 
-func _on_ThreatTimer_timeout():
-	# Start playing the threat message
-	$ThreatMessage.play()
-
-
 func _on_ThreatMessage_finished():
 	# Enable all targets
 	for t in targets:
@@ -95,12 +101,30 @@ func _on_ThreatMessage_finished():
 
 	# Start the game countdown
 	$BombsTimer.start()
-	countdown = Timer.new()
-	add_child(countdown)
-	countdown.connect("timeout", GameSignals, "death_by_bombs")
-	countdown.one_shot = true
-	countdown.start(180.0)
 
 
 func _on_BombsTimer_timeout():
 	GameSignals.emit_signal("death_by_bombs")
+
+
+func _on_TauntTimer_timeout():
+	match taunt:
+		0:
+			# Play initial threat
+			$ThreatMessage.play()
+			taunt = 1
+			$TauntTimer.start(45)
+
+		1:
+			$Taunt1.play()
+			taunt = 2
+			$TauntTimer.start(45)
+
+		2:
+			$Taunt2.play()
+			taunt = 3
+			$TauntTimer.start(45)
+
+		3:
+			$Taunt3.play()
+			taunt = 3

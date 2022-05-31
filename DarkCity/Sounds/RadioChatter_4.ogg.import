@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RadioChatter_4.ogg-9b682adabe76046b3fc51a25000f6494.oggstr"
+
+[deps]
+
+source_file="res://DarkCity/Sounds/RadioChatter_4.ogg"
+dest_files=[ "res://.import/RadioChatter_4.ogg-9b682adabe76046b3fc51a25000f6494.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
