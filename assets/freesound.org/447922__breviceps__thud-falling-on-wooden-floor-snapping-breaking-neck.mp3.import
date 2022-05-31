@@ -11,5 +11,5 @@ dest_files=[ "res://.import/447922__breviceps__thud-falling-on-wooden-floor-snap
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

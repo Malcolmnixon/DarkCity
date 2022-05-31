@@ -11,5 +11,5 @@ dest_files=[ "res://.import/9508__petenice__splash.mp3-1337224784b12b8b9f547ad14
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

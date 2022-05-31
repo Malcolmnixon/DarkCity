@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
@@ -18,6 +18,9 @@
 [ext_resource path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" type="AudioStream" id=16]
 [ext_resource path="res://DarkCity/Player/DeathFade.gd" type="Script" id=17]
 [ext_resource path="res://addons/kenney_particle_pack/trace_01.png" type="Texture" id=18]
+[ext_resource path="res://assets/freesound.org/9508__petenice__splash.mp3" type="AudioStream" id=19]
+[ext_resource path="res://assets/freesound.org/447922__breviceps__thud-falling-on-wooden-floor-snapping-breaking-neck.mp3" type="AudioStream" id=20]
+[ext_resource path="res://DarkCity/Player/Function_Fall_damage.tscn" type="PackedScene" id=21]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -107,7 +110,9 @@ right_pickup = NodePath("../RightHandController/Function_Pickup")
 
 [node name="Function_Glide_movement" parent="." index="6" instance=ExtResource( 6 )]
 
-[node name="PlayerLogic" type="Spatial" parent="." index="7"]
+[node name="Function_Fall_damage" parent="." index="7" instance=ExtResource( 21 )]
+
+[node name="PlayerLogic" type="Spatial" parent="." index="8"]
 script = ExtResource( 9 )
 
 [node name="GameMusic" type="AudioStreamPlayer3D" parent="PlayerLogic" index="0"]
@@ -124,7 +129,15 @@ stream = ExtResource( 16 )
 [node name="GrappleSwing" type="AudioStreamPlayer3D" parent="PlayerLogic" index="3"]
 stream = ExtResource( 15 )
 
-[node name="Particles" type="Particles" parent="." index="8"]
+[node name="Fall" type="AudioStreamPlayer3D" parent="PlayerLogic" index="4"]
+stream = ExtResource( 20 )
+unit_db = 30.0
+
+[node name="Drown" type="AudioStreamPlayer3D" parent="PlayerLogic" index="5"]
+stream = ExtResource( 19 )
+unit_db = 20.0
+
+[node name="Particles" type="Particles" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 material_override = SubResource( 3 )
 cast_shadow = 0
@@ -139,3 +152,4 @@ draw_pass_1 = SubResource( 5 )
 [connection signal="grapple_started" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]
 [connection signal="player_glide_end" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_end"]
 [connection signal="player_glide_start" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_start"]
+[connection signal="player_fall_damage" from="Function_Fall_damage" to="PlayerLogic" method="_on_Function_Fall_damage_player_fall_damage"]

@@ -49,5 +49,17 @@ stream = ExtResource( 6 )
 [node name="Victory" type="AudioStreamPlayer" parent="BombGame"]
 stream = ExtResource( 7 )
 
+[node name="ThreatTimer" type="Timer" parent="BombGame"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="BombsTimer" type="Timer" parent="BombGame"]
+wait_time = 180.0
+one_shot = true
+
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]
+[connection signal="finished" from="BombGame/Victory" to="BombGame" method="_on_Victory_finished"]
+[connection signal="timeout" from="BombGame/ThreatTimer" to="BombGame" method="_on_ThreatTimer_timeout"]
+[connection signal="timeout" from="BombGame/BombsTimer" to="BombGame" method="_on_BombsTimer_timeout"]
