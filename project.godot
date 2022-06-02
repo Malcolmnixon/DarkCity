@@ -189,6 +189,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameSignals="*res://DarkCity/GameSignals.gd"
+GameState="*res://DarkCity/GameState.gd"
 
 [gdnative]
 

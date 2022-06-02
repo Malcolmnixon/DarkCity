@@ -12,10 +12,12 @@ var targets_remaining : int
 var countdown : Timer
 var alive := true
 var taunt := 0
+var start_ms := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect game signals
+	GameSignals.connect("game_started", self, "_on_game_started")
 	GameSignals.connect("death_by_bombs", self, "_on_death_by_bombs")
 	GameSignals.connect("death_by_falling", self, "_on_death_by_falling")
 	GameSignals.connect("death_by_drowning", self, "_on_death_by_drowning")
@@ -33,13 +35,6 @@ func _process(var _delta):
 		GameSignals.emit_signal("death_by_drowning")
 
 
-func _on_target_diffused():
-	# Count down until all targets diffused
-	targets_remaining -= 1
-	if targets_remaining == 0:
-		_on_victory()
-
-
 func _stop_all():
 	# Stop game timers and sounds
 	$ThreatMessage.stop()
@@ -48,6 +43,30 @@ func _stop_all():
 	$Taunt3.stop()
 	$TauntTimer.stop()
 	$BombsTimer.stop()
+
+
+func _on_game_started():
+	$StartScreen.queue_free()
+	$TauntTimer.start(10.0)
+	start_ms = OS.get_ticks_msec()
+
+
+func _on_target_diffused():
+	# Count down until all targets diffused
+	targets_remaining -= 1
+	if targets_remaining != 0:
+		return
+
+	# Stop game timers and sounds
+	_stop_all()
+	
+	# Calculate duration and best time
+	var duration = (OS.get_ticks_msec() - start_ms) * 0.001
+	if GameState.best_time <= 0 or duration < GameState.best_time:
+		GameState.best_time = duration
+	
+	# Play the victory sound
+	$Victory.play()
 
 
 func _on_death_by_bombs():
@@ -76,14 +95,6 @@ func _on_death_by_drowning():
 	# Wait for 5 seconds then restart the game
 	yield(get_tree().create_timer(5.0), "timeout")
 	get_tree().reload_current_scene()
-
-
-func _on_victory():
-	# Stop game timers and sounds
-	_stop_all()
-	
-	# Play the victory sound
-	$Victory.play()
 
 
 func _on_Victory_finished():
