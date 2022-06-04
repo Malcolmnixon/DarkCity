@@ -61,9 +61,9 @@ func _on_target_diffused():
 	_stop_all()
 	
 	# Calculate duration and best time
-	var duration = (OS.get_ticks_msec() - start_ms) * 0.001
-	if GameState.best_time <= 0 or duration < GameState.best_time:
-		GameState.best_time = duration
+	GameState.last_time = (OS.get_ticks_msec() - start_ms) * 0.001
+	if GameState.best_time <= 0 or GameState.last_time < GameState.best_time:
+		GameState.best_time = GameState.last_time
 	
 	# Play the victory sound
 	$Victory.play()
@@ -99,7 +99,7 @@ func _on_death_by_drowning():
 
 func _on_Victory_finished():
 	# Wait for 30 seconds
-	yield(get_tree().create_timer(30.0), "timeout")
+	yield(get_tree().create_timer(10.0), "timeout")
 
 	# Restart the game
 	get_tree().reload_current_scene()

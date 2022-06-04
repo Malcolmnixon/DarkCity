@@ -72,7 +72,7 @@ wait_time = 180.0
 one_shot = true
 
 [node name="StartScreen" parent="BombGame" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.5, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.5, -1.6 )
 screen_size = Vector2( 2.048, 1.2 )
 viewport_size = Vector2( 1024, 600 )
 scene = ExtResource( 12 )
