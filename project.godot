@@ -183,7 +183,7 @@ _global_script_class_icons={
 [application]
 
 config/name="DarkCity"
-config/description="Dark City v0.0.1"
+config/description="Dark City v0.0.2"
 run/main_scene="res://DarkCity/DarkCity.tscn"
 config/icon="res://icon.png"
 
