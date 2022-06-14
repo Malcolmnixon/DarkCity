@@ -58,5 +58,5 @@ func _on_Function_Glide_movement_player_glide_end():
 	$GlideSound.stop()
 
 
-func _on_Function_Fall_damage_player_fall_damage():
+func _on_Function_Fall_damage_player_fall_damage(_damage: float):
 	GameSignals.emit_signal("death_by_falling")

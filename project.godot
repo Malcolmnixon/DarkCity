@@ -24,10 +24,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/functions/Function_Direct_movement.gd"
 }, {
-"base": "MovementProvider",
+"base": "Reference",
 "class": "Function_FallDamage",
 "language": "GDScript",
-"path": "res://DarkCity/Player/Function_Fall_damage.gd"
+"path": "res://addons/godot-xr-tools/functions/Function_Fall_damage.gd"
 }, {
 "base": "MovementProvider",
 "class": "Function_FlightMovement",
