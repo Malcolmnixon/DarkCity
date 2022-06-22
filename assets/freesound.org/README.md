@@ -15,6 +15,11 @@ File: 231438__6polnic__hamp-rope-creaks.mp3
 URL: https://freesound.org/s/231438/
 This file was converted to mono MP3 and cropped
 
+## Blimp Sound
+File: 607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3
+URL: https://freesound.org/s/607776/
+This file was converted to mono MP3
+
 ## Explosion
 File: explosion.mp3
 URL: https://freesound.org/s/235968/

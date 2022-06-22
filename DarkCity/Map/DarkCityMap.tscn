@@ -1,19 +1,21 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://DarkCity/Materials/Road.tres" type="Material" id=1]
 [ext_resource path="res://DarkCity/Materials/Water.tres" type="Material" id=2]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyBridge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DarkCity/Blimp/Blimp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://DarkCity/Map/BlimpFlight.gd" type="Script" id=9]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 5000, 5000 )
 
 [sub_resource type="CylinderShape" id=3]
-height = 4.0
 radius = 300.0
+height = 4.0
 
 [sub_resource type="CylinderMesh" id=4]
 top_radius = 300.0
@@ -80,3 +82,10 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.9, 
 
 [node name="SkyBridge6" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.54972e-06, 89.4, 34.7 )
+
+[node name="BlimpFlight" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 212, 0 )
+script = ExtResource( 9 )
+
+[node name="Blimp" parent="BlimpFlight" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 0 )

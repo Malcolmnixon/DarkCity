@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str"
+
+[deps]
+
+source_file="res://assets/freesound.org/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3"
+dest_files=[ "res://.import/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
