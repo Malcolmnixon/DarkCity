@@ -1,6 +1,6 @@
 #!/bin/bash
 CURRENT_DIR=$(dirname "$(readlink -f "$0")")
-APK="$CURRENT_DIR/build/Ataito.apk"
+APK="$CURRENT_DIR/build/DarkCity.apk"
 WINDOWS="$CURRENT_DIR/build/windows/"
 
 echo Uploading to Itch...

@@ -1,5 +1,5 @@
 SET CURRENT_DIR=%~dp0
-SET APK=%CURRENT_DIR%/build/Ataito.apk
+SET APK=%CURRENT_DIR%/build/DarkCity.apk
 SET WINDOWS=%CURRENT_DIR%/build/windows/
 
 echo Uploading to Itch...
