@@ -5,7 +5,7 @@ extends Spatial
 # var a = 2
 # var b = "text"
 
-onready var player_body : PlayerBody = $"../Player/PlayerBody"
+onready var player_body : XRToolsPlayerBody = $"../Player/PlayerBody"
 
 var targets : Array
 var targets_remaining : int

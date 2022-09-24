@@ -1,5 +1,5 @@
 tool
-class_name XRTHighlightMaterial
+class_name XRToolsHighlightMaterial
 extends Node
 
 

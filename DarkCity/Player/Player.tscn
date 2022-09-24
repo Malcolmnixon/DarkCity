@@ -1,18 +1,18 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/godot-openxr/scenes/first_person_controller_vr.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/godot-xr-tools/assets/LeftHand.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/godot-xr-tools/assets/RightHand.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Climb_movement.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Glide_movement.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Jump_movement.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/godot-xr-tools/assets/left_hand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/godot-xr-tools/assets/right_hand.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/godot-xr-tools/functions/function_pickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_climb.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_glide.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_jump.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/freepd.com/Evil Incoming.mp3" type="AudioStream" id=8]
 [ext_resource path="res://DarkCity/Player/PlayerLogic.gd" type="Script" id=9]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Grapple_movement.tscn" type="PackedScene" id=10]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/godot-xr-tools/assets/PlayerBody.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Turn_movement.tscn" type="PackedScene" id=13]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_grapple.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_direct.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-xr-tools/assets/player_body.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_turn.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/freesound.org/565491__jakegwizdak__wind-loop.mp3" type="AudioStream" id=14]
 [ext_resource path="res://assets/freesound.org/231438__6polnic__hamp-rope-creaks.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" type="AudioStream" id=16]
@@ -20,8 +20,11 @@
 [ext_resource path="res://addons/kenney_particle_pack/trace_01.png" type="Texture" id=18]
 [ext_resource path="res://assets/freesound.org/9508__petenice__splash.mp3" type="AudioStream" id=19]
 [ext_resource path="res://assets/freesound.org/447922__breviceps__thud-falling-on-wooden-floor-snapping-breaking-neck.mp3" type="AudioStream" id=20]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_Fall_damage.tscn" type="PackedScene" id=21]
-[ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=22]
+[ext_resource path="res://addons/godot-xr-tools/examples/fall_damage.tscn" type="PackedScene" id=21]
+[ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=22]
+[ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=23]
+[ext_resource path="res://DarkCity/Target/HighlightMaterial.tres" type="Material" id=24]
+[ext_resource path="res://DarkCity/Materials/Rope.tres" type="Material" id=25]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -32,6 +35,14 @@ flags_transparent = true
 flags_unshaded = true
 flags_no_depth_test = true
 albedo_color = Color( 0.431373, 0, 0, 0 )
+
+[sub_resource type="QuadMesh" id=6]
+size = Vector2( 0.001, 0.001 )
+
+[sub_resource type="CubeMesh" id=7]
+resource_local_to_scene = true
+size = Vector3( 0.05, 0.05, 0.05 )
+subdivide_depth = 20
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
@@ -67,56 +78,77 @@ material/0 = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="ARVRCamera/DeathFade" index="1"]
 
+[node name="VRCommonShaderCache" parent="ARVRCamera" index="1" instance=ExtResource( 23 )]
+
+[node name="TargetHighlight" type="MeshInstance" parent="ARVRCamera/VRCommonShaderCache" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 24 )
+
+[node name="Rope" type="MeshInstance" parent="ARVRCamera/VRCommonShaderCache" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 25 )
+
 [node name="LeftHand" parent="LeftHandController" index="0" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.05, 0.15 )
 
-[node name="Function_Pickup" parent="LeftHandController" index="1" instance=ExtResource( 4 )]
+[node name="FunctionPickup" parent="LeftHandController" index="1" instance=ExtResource( 4 )]
 
-[node name="Function_Direct_movement" parent="LeftHandController" index="2" instance=ExtResource( 11 )]
+[node name="MovementDirect" parent="LeftHandController" index="2" instance=ExtResource( 11 )]
 enabled = false
+order = 10
 max_speed = 5.0
 strafe = true
 
-[node name="Function_Jump_movement" parent="LeftHandController" index="3" instance=ExtResource( 7 )]
+[node name="MovementJump" parent="LeftHandController" index="3" instance=ExtResource( 7 )]
 enabled = false
 jump_button_id = 7
 
 [node name="RightHand" parent="RightHandController" index="0" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.05, 0.15 )
 
-[node name="Function_pointer" parent="RightHandController" index="1" instance=ExtResource( 22 )]
+[node name="FunctionPointer" parent="RightHandController" index="1" instance=ExtResource( 22 )]
 
-[node name="Function_Pickup" parent="RightHandController" index="2" instance=ExtResource( 4 )]
+[node name="FunctionPickup" parent="RightHandController" index="2" instance=ExtResource( 4 )]
 
-[node name="Function_Direct_movement" parent="RightHandController" index="3" instance=ExtResource( 11 )]
+[node name="MovementDirect" parent="RightHandController" index="3" instance=ExtResource( 11 )]
 enabled = false
+order = 10
 max_speed = 5.0
+strafe = false
 
-[node name="Function_Turn_movement" parent="RightHandController" index="4" instance=ExtResource( 13 )]
+[node name="MovementTurn" parent="RightHandController" index="4" instance=ExtResource( 13 )]
 smooth_rotation = true
 
-[node name="Function_Grapple_movement" parent="RightHandController" index="5" instance=ExtResource( 10 )]
+[node name="MovementGrapple" parent="RightHandController" index="5" instance=ExtResource( 10 )]
 enabled = false
 grapple_length = 50.0
 impulse_speed = 20.0
 
-[node name="Function_Jump_movement" parent="RightHandController" index="6" instance=ExtResource( 7 )]
+[node name="Grapple_Target" parent="RightHandController/MovementGrapple" index="1"]
+mesh = SubResource( 7 )
+
+[node name="Line" parent="RightHandController/MovementGrapple/LineHelper" index="0"]
+material = ExtResource( 25 )
+
+[node name="MovementJump" parent="RightHandController" index="6" instance=ExtResource( 7 )]
 enabled = false
 jump_button_id = 7
 
 [node name="PlayerBody" parent="." index="4" instance=ExtResource( 12 )]
 eye_forward_offset = 0.5
 
-[node name="Function_Climb_movement" parent="." index="5" instance=ExtResource( 5 )]
+[node name="MovementClimb" parent="." index="5" instance=ExtResource( 5 )]
 enabled = false
 fling_multiplier = 2.0
-left_pickup = NodePath("../LeftHandController/Function_Pickup")
-right_pickup = NodePath("../RightHandController/Function_Pickup")
+left_pickup = NodePath("../LeftHandController/FunctionPickup")
+right_pickup = NodePath("../RightHandController/FunctionPickup")
 
-[node name="Function_Glide_movement" parent="." index="6" instance=ExtResource( 6 )]
+[node name="MovementGlide" parent="." index="6" instance=ExtResource( 6 )]
 enabled = false
 
-[node name="Function_Fall_damage" parent="." index="7" instance=ExtResource( 21 )]
+[node name="FallDamage" parent="." index="7" instance=ExtResource( 21 )]
 enabled = false
 damage_threshold = 20.0
 
@@ -156,8 +188,10 @@ local_coords = false
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
 
-[connection signal="grapple_finished" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]
-[connection signal="grapple_started" from="RightHandController/Function_Grapple_movement" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]
-[connection signal="player_glide_end" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_end"]
-[connection signal="player_glide_start" from="Function_Glide_movement" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_start"]
-[connection signal="player_fall_damage" from="Function_Fall_damage" to="PlayerLogic" method="_on_Function_Fall_damage_player_fall_damage"]
+[connection signal="grapple_finished" from="RightHandController/MovementGrapple" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]
+[connection signal="grapple_started" from="RightHandController/MovementGrapple" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]
+[connection signal="player_glide_end" from="MovementGlide" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_end"]
+[connection signal="player_glide_start" from="MovementGlide" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_start"]
+[connection signal="player_fall_damage" from="FallDamage" to="PlayerLogic" method="_on_Function_Fall_damage_player_fall_damage"]
+
+[editable path="RightHandController/MovementGrapple"]

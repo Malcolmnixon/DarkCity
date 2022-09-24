@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://DarkCity/Materials/RustedMetal.tres" type="Material" id=1]
-[ext_resource path="res://addons/godot-xr-tools/objects/Object_pickable.gd" type="Script" id=2]
+[ext_resource path="res://addons/godot-xr-tools/objects/pickable.gd" type="Script" id=2]
 [ext_resource path="res://DarkCity/Target/Target.gd" type="Script" id=3]
 [ext_resource path="res://assets/freesound.org/487725__matrixxx__ticking-timer-05-sec.mp3" type="AudioStream" id=4]
+[ext_resource path="res://DarkCity/Target/HighlightMaterial.tres" type="Material" id=5]
 
 [sub_resource type="CylinderMesh" id=5]
 top_radius = 0.4
@@ -16,8 +17,8 @@ rings = 0
 size = Vector3( 1, 1, 1 )
 
 [sub_resource type="CylinderShape" id=7]
-height = 1.5
 radius = 0.4
+height = 1.5
 
 [sub_resource type="CubeMesh" id=8]
 size = Vector3( 0.2, 0.1, 0.2 )
@@ -31,18 +32,6 @@ extents = Vector3( 0.1, 0.05, 0.1 )
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 200, 4 )
-
-[sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0, 0, 0, 1, 0.25098, 0.25098, 0, 1 )
-
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
-
-[sub_resource type="SpatialMaterial" id=4]
-flags_transparent = true
-flags_unshaded = true
-params_blend_mode = 1
-albedo_texture = SubResource( 3 )
 
 [node name="Target" type="Spatial" groups=["target"]]
 script = ExtResource( 3 )
@@ -87,25 +76,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 95, 2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = SubResource( 4 )
+material/0 = ExtResource( 5 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = SubResource( 4 )
+material/0 = ExtResource( 5 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = SubResource( 4 )
+material/0 = ExtResource( 5 )
 
 [node name="MeshInstance4" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 95, -2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = SubResource( 4 )
+material/0 = ExtResource( 5 )
 
 [node name="TickingSound" type="AudioStreamPlayer3D" parent="Bomb"]
 stream = ExtResource( 4 )

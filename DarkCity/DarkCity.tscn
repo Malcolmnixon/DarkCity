@@ -10,7 +10,7 @@
 [ext_resource path="res://DarkCity/Sounds/RadioChatter_2.ogg" type="AudioStream" id=8]
 [ext_resource path="res://DarkCity/Sounds/RadioChatter_3.ogg" type="AudioStream" id=9]
 [ext_resource path="res://DarkCity/Sounds/RadioChatter_4.ogg" type="AudioStream" id=10]
-[ext_resource path="res://addons/godot-xr-tools/objects/Viewport_2D_in_3D.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" type="PackedScene" id=11]
 [ext_resource path="res://DarkCity/StartScreen/StartScreen.tscn" type="PackedScene" id=12]
 
 [node name="World" type="Spatial"]

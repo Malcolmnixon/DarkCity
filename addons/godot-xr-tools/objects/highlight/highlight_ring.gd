@@ -1,5 +1,5 @@
 tool
-class_name XRTHighlightRing
+class_name XRToolsHighlightRing
 extends MeshInstance
 
 

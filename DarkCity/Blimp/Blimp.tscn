@@ -4,7 +4,7 @@
 [ext_resource path="res://DarkCity/Blimp/BlimpSign.tres" type="Material" id=2]
 [ext_resource path="res://DarkCity/Blimp/BlimpSkin.tres" type="Material" id=3]
 [ext_resource path="res://DarkCity/Blimp/FanGrate.tres" type="Material" id=4]
-[ext_resource path="res://addons/godot-xr-tools/objects/Object_climbable.gd" type="Script" id=5]
+[ext_resource path="res://addons/godot-xr-tools/objects/climbable.gd" type="Script" id=5]
 [ext_resource path="res://assets/freesound.org/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3" type="AudioStream" id=6]
 
 [sub_resource type="ArrayMesh" id=1]

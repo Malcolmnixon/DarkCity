@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://DarkCity/Materials/Road.tres" type="Material" id=1]
 [ext_resource path="res://DarkCity/Materials/Water.tres" type="Material" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DarkCity/SkyScrapers/SkyScraper4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://DarkCity/Map/BlimpFlight.gd" type="Script" id=9]
+[ext_resource path="res://default_env.tres" type="Environment" id=10]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 5000, 5000 )
@@ -25,6 +26,9 @@ radial_segments = 48
 rings = 0
 
 [node name="DarkCityMap" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 10 )
 
 [node name="Water" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

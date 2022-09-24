@@ -1,5 +1,5 @@
 tool
-class_name XRTHighlightVisible
+class_name XRToolsHighlightVisible
 extends Spatial
 
 

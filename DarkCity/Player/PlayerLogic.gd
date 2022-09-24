@@ -10,17 +10,17 @@ func _ready():
 
 func _on_game_started():
 	# Disable screen controls
-	$"../RightHandController/Function_pointer".enabled = false
+	$"../RightHandController/FunctionPointer".enabled = false
 
 	# Enable game controls
-	$"../LeftHandController/Function_Direct_movement".enabled = true
-	$"../LeftHandController/Function_Jump_movement".enabled = true
-	$"../RightHandController/Function_Direct_movement".enabled = true
-	$"../RightHandController/Function_Grapple_movement".enabled = true
-	$"../RightHandController/Function_Jump_movement".enabled = true
-	$"../Function_Climb_movement".enabled = true
-	$"../Function_Glide_movement".enabled = true
-	$"../Function_Fall_damage".enabled = true
+	$"../LeftHandController/MovementDirect".enabled = true
+	$"../LeftHandController/MovementJump".enabled = true
+	$"../RightHandController/MovementDirect".enabled = true
+	$"../RightHandController/MovementGrapple".enabled = true
+	$"../RightHandController/MovementJump".enabled = true
+	$"../MovementClimb".enabled = true
+	$"../MovementGlide".enabled = true
+	$"../FallDamage".enabled = true
 
 
 func _on_death_by_bombs():
