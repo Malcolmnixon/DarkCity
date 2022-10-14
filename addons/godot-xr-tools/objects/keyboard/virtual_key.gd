@@ -26,6 +26,6 @@ func _get_virtual_keyboard() -> XRToolsVirtualKeyboard2D:
 
 		# Step up the tree
 		node = node.get_parent()
-	
+
 	# No virtual keyboard found
 	return null

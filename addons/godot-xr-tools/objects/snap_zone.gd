@@ -16,25 +16,25 @@ signal close_highlight_updated(pickable, enable)
 
 
 ## Grab distance
-export var grab_distance: float = 0.3 setget _set_grab_distance
+export var grab_distance : float = 0.3 setget _set_grab_distance
 
 ## Require snap items to be in specified group
-export var snap_require: String = ""
+export var snap_require : String = ""
 
 ## Deny snapping items in the specified group
-export var snap_exclude: String = ""
+export var snap_exclude : String = ""
 
 ## Require grab-by to be in the specified group
-export var grab_require: String = ""
+export var grab_require : String = ""
 
-## Deny grab-by 
-export var grab_exclude: String= ""
+## Deny grab-by
+export var grab_exclude : String= ""
 
 
 # Public fields
-var closest_object: Spatial = null
-var picked_up_object: Spatial = null
-var picked_up_ranged: bool = true
+var closest_object : Spatial = null
+var picked_up_object : Spatial = null
+var picked_up_ranged : bool = true
 
 
 # Private fields
@@ -42,10 +42,6 @@ var _object_in_grab_area = Array()
 
 
 func _ready():
-	# Skip if running in the editor
-	if Engine.editor_hint:
-		return
-
 	# Set collision shape radius
 	$CollisionShape.shape.radius = grab_distance
 
@@ -54,7 +50,7 @@ func _ready():
 
 
 # Called on each frame to update the pickup
-func _process(delta):
+func _process(_delta):
 	if is_instance_valid(picked_up_object):
 		return
 
@@ -77,7 +73,7 @@ func can_pick_up(by: Spatial) -> bool:
 	# Refuse if the grab-by is not in the required group
 	if not grab_require.empty() and not by.is_in_group(grab_require):
 		return false
-	
+
 	# Refuse if the grab-by is in the excluded group
 	if not grab_exclude.empty() and by.is_in_group(grab_exclude):
 		return false
@@ -107,16 +103,16 @@ func decrease_is_closest():
 
 
 # Pickable Method: Object being grabbed from this snap zone
-func pick_up(by: Spatial, with_controller: ARVRController) -> void:
+func pick_up(_by: Spatial, _with_controller: ARVRController) -> void:
 	pass
 
 
 # Pickable Method: Player never graps snap-zone
-func let_go(p_linear_velocity: Vector3, p_angular_velocity: Vector3) -> void:
+func let_go(_p_linear_velocity: Vector3, _p_angular_velocity: Vector3) -> void:
 	pass
 
 
-# Pickup Method: Drop the currently picked up object 
+# Pickup Method: Drop the currently picked up object
 func drop_object() -> void:
 	if not is_instance_valid(picked_up_object):
 		return
@@ -128,7 +124,7 @@ func drop_object() -> void:
 	emit_signal("highlight_updated", self, true)
 
 
-func _on_Snap_Zone_body_entered(target: Spatial) -> void:
+func _on_snap_zone_body_entered(target: Spatial) -> void:
 	# Ignore objects already in area
 	if _object_in_grab_area.find(target) >= 0:
 		return
@@ -157,7 +153,7 @@ func _on_Snap_Zone_body_entered(target: Spatial) -> void:
 		emit_signal("close_highlight_updated", self, true)
 
 
-func _on_Snap_Zone_body_exited(target: Spatial) -> void:
+func _on_snap_zone_body_exited(target: Spatial) -> void:
 	_object_in_grab_area.erase(target)
 
 	# Hide highlight when nothing could be snapped
@@ -190,7 +186,7 @@ func _pick_up_object(target: Spatial) -> void:
 
 
 # Called when the grab distance has been modified
-func _set_grab_distance(var new_value: float) -> void:
+func _set_grab_distance(new_value: float) -> void:
 	grab_distance = new_value
 	if is_inside_tree() and $CollisionShape:
 		$CollisionShape.shape.radius = grab_distance

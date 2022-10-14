@@ -14,46 +14,46 @@ enum GroundPhysicsFlags {
 }
 
 ## Flags defining which ground velocities are enabled
-export (int, FLAGS, 
-	"Move Drag", 
-	"Move Traction", 
-	"Move Max Slope", 
-	"Jump Max Slope", 
-	"Jump Velocity", 
-	"Bounciness", 
-	"Bounce Threshold") var flags := 0
+export (int, FLAGS,
+	"Move Drag",
+	"Move Traction",
+	"Move Max Slope",
+	"Jump Max Slope",
+	"Jump Velocity",
+	"Bounciness",
+	"Bounce Threshold") var flags : int = 0
 
 ## Movement drag factor
-export var move_drag := 5.0
+export var move_drag : float = 5.0
 
 ## Movement traction factor
-export var move_traction := 30.0
+export var move_traction : float = 30.0
 
 ## Stop sliding on slope
-export var stop_on_slope := true
+export var stop_on_slope : bool = true
 
 ## Movement maximum slope
-export (float, 0.0, 85.0) var move_max_slope := 45.0
+export (float, 0.0, 85.0) var move_max_slope : float = 45.0
 
 ## Jump maximum slope
-export (float, 0.0, 85.0) var jump_max_slope := 45.0
+export (float, 0.0, 85.0) var jump_max_slope : float = 45.0
 
 ## Jump velocity
-export var jump_velocity := 3.0
+export var jump_velocity : float = 3.0
 
 ## Ground bounciness (0 = no bounce, 1 = full bounciness)
-export var bounciness := 0.0
+export var bounciness : float = 0.0
 
 ## Bounce threshold (skip bounce if velocity less than threshold)
-export var bounce_threshold := 1.0
+export var bounce_threshold : float = 1.0
 
 
 # Handle class initialization with default parameters
 func _init(
-	p_flags = 0, 
-	p_move_drag = 5.0, 
-	p_move_traction = 30.0, 
-	p_move_max_slope = 45.0, 
+	p_flags = 0,
+	p_move_drag = 5.0,
+	p_move_traction = 30.0,
+	p_move_max_slope = 45.0,
 	p_jump_max_slope = 45.0,
 	p_jump_velocity = 3.0,
 	p_bounciness = 0.0,
@@ -71,41 +71,41 @@ func _init(
 static func get_move_drag(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.MOVE_DRAG:
 		return override.move_drag
-	else:
-		return default.move_drag
+
+	return default.move_drag
 
 static func get_move_traction(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.MOVE_TRACTION:
 		return override.move_traction
-	else:
-		return default.move_traction
+
+	return default.move_traction
 
 static func get_move_max_slope(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.MOVE_MAX_SLOPE:
 		return override.move_max_slope
-	else:
-		return default.move_max_slope
+
+	return default.move_max_slope
 
 static func get_jump_max_slope(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.JUMP_MAX_SLOP:
 		return override.jump_max_slope
-	else:
-		return default.jump_max_slope
+
+	return default.jump_max_slope
 
 static func get_jump_velocity(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.JUMP_VELOCITY:
 		return override.jump_velocity
-	else:
-		return default.jump_velocity
+
+	return default.jump_velocity
 
 static func get_bounciness(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.BOUNCINESS:
 		return override.bounciness
-	else:
-		return default.bounciness
+
+	return default.bounciness
 
 static func get_bounce_threshold(override: XRToolsGroundPhysicsSettings, default: XRToolsGroundPhysicsSettings) -> float:
 	if override and override.flags & GroundPhysicsFlags.BOUNCE_THRESHOLD:
 		return override.bounce_threshold
-	else:
-		return default.bounce_threshold
+
+	return default.bounce_threshold

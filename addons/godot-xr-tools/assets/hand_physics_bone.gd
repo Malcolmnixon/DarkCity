@@ -12,7 +12,7 @@ extends BoneAttachment
 ##     the hand skeleton, and uses this position to move a CapsuleShape bone
 ##     KinematicBody.
 ##
-##     The bone Kinematic is set as top-level and manually driven with the 
+##     The bone Kinematic is set as top-level and manually driven with the
 ##     bones positon and rotation. This is to prevent hand-scaling from scaling
 ##     the Kinematic collision shape, as colliders cannot tolerate being scaled.
 ##
@@ -26,16 +26,16 @@ extends BoneAttachment
 
 
 ## Length of the bone
-export var length := 0.03
+export var length : float = 0.03
 
 ## Ratio from length to width
-export var width_ratio := 0.3
+export var width_ratio : float = 0.3
 
 ## Additional collision layer for this one bone
-export (int, LAYERS_3D_PHYSICS) var collision_layer = 0
+export (int, LAYERS_3D_PHYSICS) var collision_layer : int = 0
 
 ## Additional bone group for this one bone
-export var bone_group := ""
+export var bone_group : String = ""
 
 
 # Bone shape

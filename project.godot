@@ -20,24 +20,24 @@ _global_script_classes=[ {
 "path": "res://addons/godot-xr-tools/objects/climbable.gd"
 }, {
 "base": "XRToolsMovementProvider",
-"class": "XRToolsDirectMovement",
-"language": "GDScript",
-"path": "res://addons/godot-xr-tools/functions/movement_direct.gd"
-}, {
-"base": "XRToolsMovementProvider",
 "class": "XRToolsFallDamage",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/examples/fall_damage.gd"
-}, {
-"base": "XRToolsMovementProvider",
-"class": "XRToolsFlightMovement",
-"language": "GDScript",
-"path": "res://addons/godot-xr-tools/functions/movement_flight.gd"
 }, {
 "base": "Spatial",
 "class": "XRToolsFunctionPickup",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/functions/function_pickup.gd"
+}, {
+"base": "Spatial",
+"class": "XRToolsFunctionPointer",
+"language": "GDScript",
+"path": "res://addons/godot-xr-tools/functions/function_pointer.gd"
+}, {
+"base": "KinematicBody",
+"class": "XRToolsFunctionTeleport",
+"language": "GDScript",
+"path": "res://addons/godot-xr-tools/functions/function_teleport.gd"
 }, {
 "base": "Node",
 "class": "XRToolsGroundPhysics",
@@ -49,12 +49,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/overrides/ground_physics_settings.gd"
 }, {
-"base": "Reference",
+"base": "Spatial",
 "class": "XRToolsHand",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/assets/hand.gd"
 }, {
-"base": "Reference",
+"base": "BoneAttachment",
 "class": "XRToolsHandPhysicsBone",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/assets/hand_physics_bone.gd"
@@ -119,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/interactables/interactable_slider.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "XRToolsMoveTo",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/misc/move_to.gd"
@@ -133,6 +133,16 @@ _global_script_classes=[ {
 "class": "XRToolsMovementCrouch",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/functions/movement_crouch.gd"
+}, {
+"base": "XRToolsMovementProvider",
+"class": "XRToolsMovementDirect",
+"language": "GDScript",
+"path": "res://addons/godot-xr-tools/functions/movement_direct.gd"
+}, {
+"base": "XRToolsMovementProvider",
+"class": "XRToolsMovementFlight",
+"language": "GDScript",
+"path": "res://addons/godot-xr-tools/functions/movement_flight.gd"
 }, {
 "base": "XRToolsMovementProvider",
 "class": "XRToolsMovementGlide",
@@ -150,9 +160,9 @@ _global_script_classes=[ {
 "path": "res://addons/godot-xr-tools/functions/movement_jump.gd"
 }, {
 "base": "XRToolsMovementProvider",
-"class": "XRToolsMovementJumpDetect",
+"class": "XRToolsMovementPhysicalJump",
 "language": "GDScript",
-"path": "res://addons/godot-xr-tools/functions/movement_jump_detect.gd"
+"path": "res://addons/godot-xr-tools/functions/movement_physical_jump.gd"
 }, {
 "base": "Node",
 "class": "XRToolsMovementProvider",
@@ -169,12 +179,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/functions/movement_wind.gd"
 }, {
-"base": "Reference",
+"base": "XRToolsHand",
 "class": "XRToolsPhysicsHand",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/assets/physics_hand.gd"
 }, {
-"base": "Reference",
+"base": "RigidBody",
 "class": "XRToolsPickable",
 "language": "GDScript",
 "path": "res://addons/godot-xr-tools/objects/pickable.gd"
@@ -212,13 +222,13 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ARVRHelpers": "",
 "XRToolsClimbable": "res://addons/godot-xr-tools/editor/icons/hand.svg",
-"XRToolsDirectMovement": "",
 "XRToolsFallDamage": "",
-"XRToolsFlightMovement": "",
 "XRToolsFunctionPickup": "res://addons/godot-xr-tools/editor/icons/function.svg",
+"XRToolsFunctionPointer": "res://addons/godot-xr-tools/editor/icons/function.svg",
+"XRToolsFunctionTeleport": "res://addons/godot-xr-tools/editor/icons/function.svg",
 "XRToolsGroundPhysics": "",
 "XRToolsGroundPhysicsSettings": "",
-"XRToolsHand": "",
+"XRToolsHand": "res://addons/godot-xr-tools/editor/icons/hand.svg",
 "XRToolsHandPhysicsBone": "",
 "XRToolsHighlightMaterial": "",
 "XRToolsHighlightRing": "",
@@ -235,10 +245,12 @@ _global_script_class_icons={
 "XRToolsMoveTo": "",
 "XRToolsMovementClimb": "",
 "XRToolsMovementCrouch": "",
+"XRToolsMovementDirect": "",
+"XRToolsMovementFlight": "",
 "XRToolsMovementGlide": "",
 "XRToolsMovementGrapple": "",
 "XRToolsMovementJump": "",
-"XRToolsMovementJumpDetect": "",
+"XRToolsMovementPhysicalJump": "",
 "XRToolsMovementProvider": "res://addons/godot-xr-tools/editor/icons/movement_provider.svg",
 "XRToolsMovementTurn": "",
 "XRToolsMovementWind": "",
@@ -255,7 +267,7 @@ _global_script_class_icons={
 [application]
 
 config/name="DarkCity"
-config/description="Dark City v0.0.5"
+config/description="Dark City v0.0.6"
 run/main_scene="res://DarkCity/DarkCity.tscn"
 config/icon="res://icon.png"
 

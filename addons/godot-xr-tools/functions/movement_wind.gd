@@ -8,23 +8,23 @@ signal wind_area_changed(active_wind_area)
 
 
 ## Movement provider order
-export var order := 25
+export var order : int = 25
 
 ## Drag multiplier for the player
-export var drag_multiplier := 1.0
+export var drag_multiplier : float = 1.0
 
 # Set our collision mask
-export (int, LAYERS_3D_PHYSICS) var collision_mask = 524288 setget set_collision_mask
+export (int, LAYERS_3D_PHYSICS) var collision_mask : int = 524288 setget set_collision_mask
 
 
 # Wind area
-var _sense_area: Area
+var _sense_area : Area
 
 # Array of wind areas the player is in
 var _in_wind_areas := Array()
 
 # Currently active wind area
-var _active_wind_area: XRToolsWindArea = null
+var _active_wind_area : XRToolsWindArea
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,16 +32,16 @@ func _ready():
 	# Skip if running in the editor
 	if Engine.editor_hint:
 		return
-	
+
 	# Skip if we don't have a camera
 	var camera := ARVRHelpers.get_arvr_camera(self)
 	if !camera:
 		return
-		
+
 	# Construct the sphere shape
 	var sphere_shape := SphereShape.new()
 	sphere_shape.radius = 0.3
-	
+
 	# Construct the collision shape
 	var collision_shape := CollisionShape.new()
 	collision_shape.set_name("WindSensorShape")
@@ -84,7 +84,7 @@ func _on_area_entered(area: Area):
 func _on_area_exited(area: Area):
 	# Erase from the wind area
 	_in_wind_areas.erase(area)
-	
+
 	# If we didn't leave the active wind area then we're done
 	if area != _active_wind_area:
 		return

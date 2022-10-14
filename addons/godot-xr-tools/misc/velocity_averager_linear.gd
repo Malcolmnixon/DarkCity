@@ -5,21 +5,21 @@ class_name XRToolsVelocityAveragerLinear
 ## Linear Velocity Averager class
 ##
 ## @desc:
-##     This class assists in calculating the average linear velocity of an 
+##     This class assists in calculating the average linear velocity of an
 ##     object. It accepts the following types of input:
 ##      - Periodic distances
 ##      - Periodic velocities
 ##      - Periodic transforms (for the origin position)
 ##
-##     It provides the average velocity calculated from the total distance 
+##     It provides the average velocity calculated from the total distance
 ##     divided by the total time.
-## 
+##
 
 
 # Count of averages to perform
 var _count: int
 
-# Array of time deltas (in float seconds) 
+# Array of time deltas (in float seconds)
 var _time_deltas := Array()
 
 # Array of linear distances (in Vector3)
@@ -33,7 +33,7 @@ var _has_last_transform := false
 
 
 ## Initialize the VelocityAverager with an averaging count
-func _init(var count: int):
+func _init(count: int):
 	_count = count
 
 ## Clear the averages
@@ -43,7 +43,7 @@ func clear():
 	_has_last_transform = false
 
 ## Add a linear distance to the averager
-func add_distance(var delta: float, var linear_distance: Vector3):
+func add_distance(delta: float, linear_distance: Vector3):
 	# Add data averaging arrays
 	_time_deltas.push_back(delta)
 	_linear_distances.push_back(linear_distance)
@@ -54,11 +54,11 @@ func add_distance(var delta: float, var linear_distance: Vector3):
 		_linear_distances.pop_front()
 
 ## Add a linear velocity to the averager
-func add_velocity(var delta: float, var linear_velocity: Vector3):
+func add_velocity(delta: float, linear_velocity: Vector3):
 	add_distance(delta, linear_velocity * delta)
 
 ## Add a transform to the averager
-func add_transform(var delta: float, var transform: Transform):
+func add_transform(delta: float, transform: Transform):
 	# Handle saving the first transform
 	if !_has_last_transform:
 		_last_transform = transform
@@ -67,7 +67,7 @@ func add_transform(var delta: float, var transform: Transform):
 
 	# Calculate the linear distances
 	var linear_distance := transform.origin - _last_transform.origin
-	
+
 	# Update the last transform
 	_last_transform = transform
 

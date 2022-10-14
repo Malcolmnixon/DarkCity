@@ -37,7 +37,7 @@ static func get_arvr_origin(node: Node, path: NodePath = NodePath("")) -> ARVROr
 ## Find the ARVR Camera from a player node and an optional path
 static func get_arvr_camera(node: Node, path: NodePath = NodePath("")) -> ARVRCamera:
 	var camera: ARVRCamera
-	
+
 	# Try using the node path first
 	if path:
 		camera = node.get_node(path) as ARVRCamera
@@ -59,7 +59,7 @@ static func get_arvr_camera(node: Node, path: NodePath = NodePath("")) -> ARVRCa
 		camera = child as ARVRCamera
 		if camera:
 			return camera
-	
+
 	# Could not find camera
 	return null
 
@@ -74,7 +74,7 @@ static func get_right_controller(node: Node, path: NodePath = NodePath("")) -> A
 ## Find a controller given some search parameters
 static func _get_controller(var node: Node, var default_name: String, var id: int, var path: NodePath) -> ARVRController:
 	var controller: ARVRController
-	
+
 	# Try using the node path first
 	if path:
 		controller = node.get_node(path) as ARVRController

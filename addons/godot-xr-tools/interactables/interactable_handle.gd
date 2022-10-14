@@ -7,22 +7,22 @@ extends XRToolsPickable
 ## Interactable Handle script
 ##
 ## @desc:
-##     The interactable handle is a (usually invisible) object that can be 
+##     The interactable handle is a (usually invisible) object that can be
 ##     grabbed by the player and is used to manipulate interactable objects.
 ##
 ##     The interactible handle has an origin position of its parent. In order
 ##     to position interactible handles on the interactible object, the handle
-##     should be placed under a parent handle-origin Spatial node, and the 
+##     should be placed under a parent handle-origin Spatial node, and the
 ##     origin nodes position set as desired.
 ##
 ##     When the handle is released, it snaps back to its parent origin. If the
 ##     handle is pulled further than its snap distance, then the handle is
 ##     automatically released.
-## 
+##
 
 
 ## Distance from the handle origin to auto-snap the grab
-export var snap_distance := 0.3
+export var snap_distance : float = 0.3
 
 
 # Handle origin spatial node
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 
 # Called on every frame when the handle is held to check for snapping
-func _process(var _delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Skip if not picked up
 	if !picked_up_by:
 		return

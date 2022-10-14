@@ -1,6 +1,6 @@
+class_name XRToolsInteractableBody
 extends PhysicsBody
 
-class_name XRToolsInteractableBody
 
 signal pointer_pressed(at)
 signal pointer_released(at)

@@ -35,17 +35,17 @@ enum Buttons {
 
 
 ## Movement provider order
-export var order := 10
+export var order : int = 10
 
 ## Crouch height
-export var crouch_height := 1.0
+export var crouch_height : float = 1.0
 
 ## Crouch button
-export (Buttons) var crouch_button: int = Buttons.VR_PAD
+export (Buttons) var crouch_button : int = Buttons.VR_PAD
 
 
 ## Crouching flag
-var _crouching := false
+var _crouching : bool = false
 
 
 # Controller node
@@ -53,7 +53,7 @@ onready var _controller : ARVRController = get_parent()
 
 
 # Perform jump movement
-func physics_movement(delta: float, player_body: XRToolsPlayerBody, _disabled: bool):
+func physics_movement(_delta: float, player_body: XRToolsPlayerBody, _disabled: bool):
 	# Skip if the controller isn't active
 	if !_controller.get_is_active():
 		return
@@ -62,7 +62,7 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, _disabled: b
 	var crouching := _controller.is_button_pressed(crouch_button) != 0
 	if crouching == _crouching:
 		return
-	
+
 	# Update crouching state
 	_crouching = crouching
 	if crouching:

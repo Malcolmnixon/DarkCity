@@ -10,7 +10,7 @@ extends Area
 ##     The interactable area button detects objects and areas intering its
 ##     area, and moves an associated button object using a tween to animate
 ##     the movement.
-## 
+##
 
 
 ## Button pressed event
@@ -24,14 +24,14 @@ signal button_released(button)
 export var button := NodePath()
 
 ## Displacement when pressed
-export var displacement := Vector3(0.0, -0.02, 0.0)
+export var displacement : Vector3 = Vector3(0.0, -0.02, 0.0)
 
 ## Displacement duration
-export var duration := 0.1
+export var duration : float = 0.1
 
 
 # Button pressed state
-var pressed := false
+var pressed : bool = false
 
 # Dictionary of trigger items pressing the button
 var _trigger_items := {}
@@ -53,7 +53,7 @@ func _ready():
 	_tween = Tween.new()
 	_tween.set_name("Tween")
 	add_child(_tween)
-	
+
 	# Connect area signals
 	if connect("area_entered", self, "_on_button_entered"):
 		push_error("Unable to connect button area signal")
@@ -66,7 +66,7 @@ func _ready():
 
 
 # Called when an area or body enters the button area
-func _on_button_entered(var item: Spatial) -> void:
+func _on_button_entered(item: Spatial) -> void:
 	# Add to the dictionary of trigger items
 	_trigger_items[item] = item
 
@@ -84,7 +84,7 @@ func _on_button_entered(var item: Spatial) -> void:
 
 
 # Called when an area or body exits the button area
-func _on_button_exited(var item: Spatial) -> void:
+func _on_button_exited(item: Spatial) -> void:
 	# Remove from the dictionary of triggered items
 	_trigger_items.erase(item)
 
@@ -104,7 +104,7 @@ func _on_button_exited(var item: Spatial) -> void:
 # Check button configuration
 func _get_configuration_warning() -> String:
 	# Ensure a button has been specified
-	if !button:
+	if not get_node_or_null(button):
 		return "Button node to animate must be specified"
 
 	# Ensure a valid duration

@@ -1,12 +1,13 @@
 tool
-class_name XRToolsDirectMovement
+class_name XRToolsMovementDirect
 extends XRToolsMovementProvider
+
 
 ##
 ## Movement Provider for Direct Movement
 ##
 ## @desc:
-##     This script provides direct movement for the player. This script works 
+##     This script provides direct movement for the player. This script works
 ##     with the PlayerBody attached to the players ARVROrigin.
 ##
 ##     The following types of direct movement are supported:
@@ -19,13 +20,13 @@ extends XRToolsMovementProvider
 
 
 ## Movement provider order
-export var order := 10
+export var order : int = 10
 
 ## Movement speed
-export var max_speed := 10.0
+export var max_speed : float = 10.0
 
 ## Enable player strafing
-export var strafe := false
+export var strafe : bool = false
 
 
 # Controller node
@@ -33,7 +34,7 @@ onready var _controller : ARVRController = get_parent()
 
 
 # Perform jump movement
-func physics_movement(delta: float, player_body: XRToolsPlayerBody, _disabled: bool):
+func physics_movement(_delta: float, player_body: XRToolsPlayerBody, _disabled: bool):
 	# Skip if the controller isn't active
 	if !_controller.get_is_active():
 		return

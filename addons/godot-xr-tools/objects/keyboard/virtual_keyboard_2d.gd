@@ -2,7 +2,7 @@ class_name XRToolsVirtualKeyboard2D
 extends CanvasLayer
 
 # Enumeration of keyboard view modes
-enum KEYBOARD_MODE {
+enum KeyboardMode {
 	LOWER_CASE,		# Lower-case keys mode
 	UPPER_CASE,		# Upper-case keys mode
 	ALTERNATE		# Alternate keys mode
@@ -18,7 +18,7 @@ var _caps_down := false
 var _alt_down := false
 
 # Current keyboard mode
-var _mode: int = KEYBOARD_MODE.LOWER_CASE
+var _mode: int = KeyboardMode.LOWER_CASE
 
 
 # Handle key pressed from VirtualKey
@@ -76,11 +76,11 @@ func _update_visible():
 	# Evaluate the new mode
 	var new_mode: int
 	if _alt_down:
-		new_mode = KEYBOARD_MODE.ALTERNATE
+		new_mode = KeyboardMode.ALTERNATE
 	elif _shift_down or _caps_down:
-		new_mode = KEYBOARD_MODE.UPPER_CASE
+		new_mode = KeyboardMode.UPPER_CASE
 	else:
-		new_mode = KEYBOARD_MODE.LOWER_CASE
+		new_mode = KeyboardMode.LOWER_CASE
 
 	# Skip if no change
 	if new_mode == _mode:
@@ -88,6 +88,6 @@ func _update_visible():
 
 	# Update the visible mode
 	_mode = new_mode
-	$Background/LowerCase.visible = _mode == KEYBOARD_MODE.LOWER_CASE
-	$Background/UpperCase.visible = _mode == KEYBOARD_MODE.UPPER_CASE
-	$Background/Alternate.visible = _mode == KEYBOARD_MODE.ALTERNATE
+	$Background/LowerCase.visible = _mode == KeyboardMode.LOWER_CASE
+	$Background/UpperCase.visible = _mode == KeyboardMode.UPPER_CASE
+	$Background/Alternate.visible = _mode == KeyboardMode.ALTERNATE

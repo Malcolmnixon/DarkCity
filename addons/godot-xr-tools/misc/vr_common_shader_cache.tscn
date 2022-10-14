@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-xr-tools/materials/teleport.tres" type="Material" id=2]
 [ext_resource path="res://addons/godot-xr-tools/materials/target.tres" type="Material" id=3]
-[ext_resource path="res://addons/godot-xr-tools/materials/capule.tres" type="Material" id=4]
+[ext_resource path="res://addons/godot-xr-tools/materials/capsule.tres" type="Material" id=4]
 [ext_resource path="res://addons/godot-xr-tools/materials/pointer.tres" type="Material" id=5]
 [ext_resource path="res://addons/godot-xr-tools/materials/highlight.tres" type="Material" id=6]
 

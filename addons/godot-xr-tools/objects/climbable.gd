@@ -11,10 +11,11 @@ extends Spatial
 ##     climbing.
 ##
 
-var press_to_hold := true
+var press_to_hold : bool = true
 
 ## Dictionary of grab locations by pickup
 var grab_locations := {}
+
 
 # Called by XRToolsFunctionPickup
 func is_picked_up() -> bool:
@@ -36,11 +37,11 @@ func decrease_is_closest():
 	pass
 
 # Called by XRToolsFunctionPickup when this is picked up by a controller
-func pick_up(by: Spatial, with_controller: ARVRController) -> void:
+func pick_up(by: Spatial, _with_controller: ARVRController) -> void:
 	save_grab_location(by)
 
 # Called by XRToolsFunctionPickup when this is let go by a controller
-func let_go(p_linear_velocity: Vector3, p_angular_velocity: Vector3) -> void:
+func let_go(_p_linear_velocity: Vector3, _p_angular_velocity: Vector3) -> void:
 	pass
 
 # Save the grab location
