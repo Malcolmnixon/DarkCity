@@ -75,7 +75,10 @@ one_shot = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.5, -1.6 )
 screen_size = Vector2( 2.048, 1.2 )
 viewport_size = Vector2( 1024, 600 )
+unshaded = true
 scene = ExtResource( 12 )
+update_mode = 2
+throttle_fps = 10.0
 
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]
