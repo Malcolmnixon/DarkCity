@@ -5,7 +5,7 @@ extends RigidBody
 
 ## XR Tools Pickable Object
 ##
-## This script allows a [RigidBody3D] to be picked up by an 
+## This script allows a [RigidBody3D] to be picked up by an
 ## [XRToolsFunctionPickup] attached to a players controller.
 ##
 ## Additionally pickable objects may support being snapped into
@@ -26,10 +26,6 @@ signal action_pressed(pickable)
 
 # Signal emitted when the highlight state changes
 signal highlight_updated(pickable, enable)
-
-
-# Priority for grip poses
-const GRIP_POSE_PRIORITY = 100
 
 
 ## Method used to hold object
@@ -55,8 +51,13 @@ enum PickableState {
 enum ReleaseMode {
 	ORIGINAL = -1,		## Preserve original mode when picked up
 	RIGID = 0,			## Release and make rigid (MODE_RIGID)
-	STATIC = 1			## Release and make static (MODE_STATIC)
+	STATIC = 1,			## Release and make static (MODE_STATIC)
 }
+
+
+## Priority for grip poses
+const GRIP_POSE_PRIORITY = 100
+
 
 ## If true, the grip control must be held to keep the object picked up
 export var press_to_hold : bool = true
@@ -83,19 +84,19 @@ export var picked_by_exclude : String = ""
 export var picked_by_require : String = ""
 
 
-# Can object be grabbed at range
+## If true, the object can be picked up at range
 var can_ranged_grab: bool = true
 
-# Original RigidBody mode
+## Original RigidBody mode
 var original_mode
 
-# Entity holding this item
+## Entity holding this item
 var picked_up_by: Spatial = null
 
-# Controller holding this item (may be null if held by snap-zone)
+## Controller holding this item (may be null if held by snap-zone)
 var by_controller : ARVRController = null
 
-# Hand holding this item (may be null if held by snap-zone)
+## Hand holding this item (may be null if held by snap-zone)
 var by_hand : XRToolsHand = null
 
 # Count of 'is_closest' grabbers
@@ -377,7 +378,7 @@ func _get_grab_point(_grabber : Node) -> XRToolsGrabPoint:
 		var grab_point : XRToolsGrabPoint = g
 		if grab_point.can_grab(_grabber):
 			return grab_point
-	
+
 	# No suitable grab-point found
 	return null
 

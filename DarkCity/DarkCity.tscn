@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://DarkCity/Map/DarkCityMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DarkCity/Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://DarkCity/Sounds/RadioChatter_4.ogg" type="AudioStream" id=10]
 [ext_resource path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" type="PackedScene" id=11]
 [ext_resource path="res://DarkCity/StartScreen/StartScreen.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/godot-xr-tools/xr/start_xr.tscn" type="PackedScene" id=13]
 
 [node name="World" type="Spatial"]
 
@@ -79,6 +80,8 @@ unshaded = true
 scene = ExtResource( 12 )
 update_mode = 2
 throttle_fps = 10.0
+
+[node name="StartXR" parent="." instance=ExtResource( 13 )]
 
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]
