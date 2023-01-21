@@ -154,6 +154,7 @@ enabled = false
 jump_button_id = 7
 
 [node name="PlayerBody" parent="." instance=ExtResource( 12 )]
+enabled = false
 eye_forward_offset = 0.5
 
 [node name="MovementClimb" parent="." instance=ExtResource( 5 )]

@@ -22,6 +22,9 @@ func _on_game_started():
 	$"../MovementGlide".enabled = true
 	$"../FallDamage".enabled = true
 
+	# Enable player body
+	$"../PlayerBody".enabled = true
+
 
 func _on_death_by_bombs():
 	$"../ARVRCamera/DeathFade".death_fade(Color.red, 5.0)
