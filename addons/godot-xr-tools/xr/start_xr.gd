@@ -29,6 +29,9 @@ signal xr_ended
 ## If true, the XR interface is automatically initialized
 export var auto_initialize : bool = true
 
+## Adjusts the pixel density on the rendering target
+export var render_target_size_multiplier : float = 1.0
+
 ## If true, the XR passthrough is enabled (OpenXR only)
 export var enable_passthrough : bool = false setget _set_enable_passthrough
 
@@ -94,12 +97,18 @@ func _setup_for_openxr() -> bool:
 	# Create the OpenXR configuration class
 	_openxr_configuration = openxr_config_res.new()
 
+	# Set the render target size multiplier - must be done befor initializing interface
+	_openxr_configuration.render_target_size_multiplier = render_target_size_multiplier
+
 	# Initialize the OpenXR interface
 	if not xr_interface.interface_is_initialized:
 		print("OpenXR: Initializing interface")
 		if not xr_interface.initialize():
 			push_error("OpenXR: Failed to initialize")
 			return false
+
+	# Print the system name
+	print("OpenXR: System name: ", _openxr_configuration.get_system_name())
 
 	# Connect the OpenXR events
 	ARVRServer.connect("openxr_session_begun", self, "_on_openxr_session_begun")
@@ -202,7 +211,7 @@ func _openxr_stop_passthrough() -> void:
 # Perform WebXR setup
 func _setup_for_webxr() -> bool:
 	print("WebXR: Configuring interface")
-	
+
 	# Connect the WebXR events
 	xr_interface.connect("session_supported", self, "_on_webxr_session_supported")
 	xr_interface.connect("session_started", self, "_on_webxr_session_started")
@@ -213,7 +222,7 @@ func _setup_for_webxr() -> bool:
 	# something sufficiently high
 	Engine.iterations_per_second = 144
 
-	# If the XR session has already started then skip
+	# If the viewport is already in XR mode then we are done.
 	if get_viewport().arvr:
 		return true
 
