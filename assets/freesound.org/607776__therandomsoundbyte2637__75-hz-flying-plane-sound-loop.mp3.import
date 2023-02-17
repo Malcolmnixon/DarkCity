@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str"
+uid="uid://cgshycaaej3j"
+path="res://.godot/imported/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str"
 
 [deps]
 
 source_file="res://assets/freesound.org/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3"
-dest_files=[ "res://.import/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str" ]
+dest_files=["res://.godot/imported/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3-b4aed8aca0f2b43070ae2a9861ac182a.mp3str"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

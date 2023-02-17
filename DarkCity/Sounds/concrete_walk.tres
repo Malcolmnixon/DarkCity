@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=3 format=3]
 
-[ext_resource path="res://addons/godot-xr-tools/audio/surface_audio_type.gd" type="Script" id=1]
-[ext_resource path="res://assets/freesound.org/166509__yoyodaman234__concrete-footstep-1.wav" type="AudioStream" id=2]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/audio/surface_audio_type.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://cmu3beaijovy4" path="res://assets/freesound.org/166509__yoyodaman234__concrete-footstep-1.wav" id="2"]
 
 [resource]
 script = ExtResource( 1 )

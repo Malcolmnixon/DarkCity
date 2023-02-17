@@ -1,50 +1,50 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cg5oliuo0uo63"]
 
-[ext_resource path="res://addons/godot-xr-tools/objects/climbable.gd" type="Script" id=1]
-[ext_resource path="res://DarkCity/Materials/SkyScraper.tres" type="Material" id=2]
-[ext_resource path="res://DarkCity/Materials/Concrete.tres" type="Material" id=3]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/climbable.gd" id="1"]
+[ext_resource type="Material" path="res://DarkCity/Materials/SkyScraper.tres" id="2"]
+[ext_resource type="Material" uid="uid://bd8qrnrf6nod5" path="res://DarkCity/Materials/Concrete.tres" id="3"]
 
-[sub_resource type="CubeMesh" id=1]
-material = ExtResource( 2 )
-size = Vector3( 40, 4, 6 )
+[sub_resource type="BoxMesh" id="1"]
+material = ExtResource("2")
+size = Vector3(40, 4, 6)
 
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 20, 2, 3 )
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(40, 4, 6)
 
-[sub_resource type="CubeMesh" id=3]
-material = ExtResource( 3 )
-size = Vector3( 40, 1, 6 )
+[sub_resource type="BoxMesh" id="3"]
+material = ExtResource("3")
+size = Vector3(40, 1, 6)
 
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 20, 0.5, 3 )
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(40, 1, 6)
 
-[node name="SkyBridge" type="Spatial"]
+[node name="SkyBridge" type="Node3D"]
 
-[node name="BridgeWay" type="StaticBody" parent="."]
-script = ExtResource( 1 )
+[node name="BridgeWay" type="StaticBody3D" parent="."]
+script = ExtResource("1")
 
-[node name="MeshInstance" type="MeshInstance" parent="BridgeWay"]
-mesh = SubResource( 1 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BridgeWay"]
+mesh = SubResource("1")
 
-[node name="CollisionShape" type="CollisionShape" parent="BridgeWay"]
-shape = SubResource( 2 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BridgeWay"]
+shape = SubResource("2")
 
-[node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0 )
-script = ExtResource( 1 )
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+script = ExtResource("1")
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-mesh = SubResource( 3 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("3")
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-shape = SubResource( 4 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("4")
 
-[node name="Roof" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
-script = ExtResource( 1 )
+[node name="Roof" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+script = ExtResource("1")
 
-[node name="MeshInstance" type="MeshInstance" parent="Roof"]
-mesh = SubResource( 3 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Roof"]
+mesh = SubResource("3")
 
-[node name="CollisionShape" type="CollisionShape" parent="Roof"]
-shape = SubResource( 4 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof"]
+shape = SubResource("4")

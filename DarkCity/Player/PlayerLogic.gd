@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
 
 func _ready():
-	GameSignals.connect("game_started", self, "_on_game_started")
-	GameSignals.connect("death_by_bombs", self, "_on_death_by_bombs")
-	GameSignals.connect("death_by_falling", self, "_on_death_by_falling")
-	GameSignals.connect("death_by_drowning", self, "_on_death_by_drowning")
+	GameSignals.connect("game_started",Callable(self,"_on_game_started"))
+	GameSignals.connect("death_by_bombs",Callable(self,"_on_death_by_bombs"))
+	GameSignals.connect("death_by_falling",Callable(self,"_on_death_by_falling"))
+	GameSignals.connect("death_by_drowning",Callable(self,"_on_death_by_drowning"))
 
 
 func _on_game_started():
@@ -27,19 +27,19 @@ func _on_game_started():
 
 
 func _on_death_by_bombs():
-	$"../ARVRCamera/DeathFade".death_fade(Color.red, 5.0)
+	$"../XRCamera3D/DeathFade".death_fade(Color.RED, 5.0)
 	$"../PlayerBody".enabled = false
 
 
 func _on_death_by_falling():
 	$Fall.play()
-	$"../ARVRCamera/DeathFade".death_fade(Color.red, 2.0)
+	$"../XRCamera3D/DeathFade".death_fade(Color.RED, 2.0)
 	$"../PlayerBody".enabled = false
 
 
 func _on_death_by_drowning():
 	$Drown.play()
-	$"../ARVRCamera/DeathFade".death_fade(Color.darkblue, 0.5)
+	$"../XRCamera3D/DeathFade".death_fade(Color.DARK_BLUE, 0.5)
 	$"../PlayerBody".enabled = false
 
 

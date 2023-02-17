@@ -1,11 +1,11 @@
-extends Spatial
+extends Node3D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-onready var player_body : XRToolsPlayerBody = $"../Player/PlayerBody"
+@onready var player_body : XRToolsPlayerBody = $"../Player/PlayerBody"
 
 var targets : Array
 var targets_remaining : int
@@ -17,19 +17,19 @@ var start_ms := 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect game signals
-	GameSignals.connect("game_started", self, "_on_game_started")
-	GameSignals.connect("death_by_bombs", self, "_on_death_by_bombs")
-	GameSignals.connect("death_by_falling", self, "_on_death_by_falling")
-	GameSignals.connect("death_by_drowning", self, "_on_death_by_drowning")
+	GameSignals.connect("game_started",Callable(self,"_on_game_started"))
+	GameSignals.connect("death_by_bombs",Callable(self,"_on_death_by_bombs"))
+	GameSignals.connect("death_by_falling",Callable(self,"_on_death_by_falling"))
+	GameSignals.connect("death_by_drowning",Callable(self,"_on_death_by_drowning"))
 	
 	# Connect all target diffused signals
 	targets = get_tree().get_nodes_in_group("target")
 	targets_remaining = targets.size()
 	for t in targets:
-		t.connect("target_diffused", self, "_on_target_diffused")
+		t.connect("target_diffused",Callable(self,"_on_target_diffused"))
 
 
-func _process(var _delta):
+func _process(_delta):
 	if alive and player_body.kinematic_node.transform.origin.y < 0.0:
 		alive = false
 		GameSignals.emit_signal("death_by_drowning")
@@ -48,7 +48,7 @@ func _stop_all():
 func _on_game_started():
 	$StartScreen.queue_free()
 	$TauntTimer.start(10.0)
-	start_ms = OS.get_ticks_msec()
+	start_ms = Time.get_ticks_msec()
 
 
 func _on_target_diffused():
@@ -61,7 +61,7 @@ func _on_target_diffused():
 	_stop_all()
 	
 	# Calculate duration and best time
-	GameState.last_time = (OS.get_ticks_msec() - start_ms) * 0.001
+	GameState.last_time = (Time.get_ticks_msec() - start_ms) * 0.001
 	if GameState.best_time <= 0 or GameState.last_time < GameState.best_time:
 		GameState.best_time = GameState.last_time
 	
@@ -84,7 +84,7 @@ func _on_death_by_falling():
 	_stop_all()
 
 	# Wait for 5 seconds then restart the game
-	yield(get_tree().create_timer(5.0), "timeout")
+	await get_tree().create_timer(5.0).timeout
 	get_tree().reload_current_scene()
 
 
@@ -93,13 +93,13 @@ func _on_death_by_drowning():
 	_stop_all()
 
 	# Wait for 5 seconds then restart the game
-	yield(get_tree().create_timer(5.0), "timeout")
+	await get_tree().create_timer(5.0).timeout
 	get_tree().reload_current_scene()
 
 
 func _on_Victory_finished():
 	# Wait for 30 seconds
-	yield(get_tree().create_timer(10.0), "timeout")
+	await get_tree().create_timer(10.0).timeout
 
 	# Restart the game
 	get_tree().reload_current_scene()

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/RadioChatter_1b.ogg-777e2d1dea86363cfd41deee1d002f6c.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btoj6v2rbxq7x"
+path="res://.godot/imported/RadioChatter_1b.ogg-777e2d1dea86363cfd41deee1d002f6c.oggvorbisstr"
 
 [deps]
 
 source_file="res://DarkCity/Sounds/RadioChatter_1b.ogg"
-dest_files=[ "res://.import/RadioChatter_1b.ogg-777e2d1dea86363cfd41deee1d002f6c.oggstr" ]
+dest_files=["res://.godot/imported/RadioChatter_1b.ogg-777e2d1dea86363cfd41deee1d002f6c.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

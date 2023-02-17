@@ -1,5 +1,6 @@
-tool
-class_name XRToolsSurfaceAudioType, "res://addons/godot-xr-tools/editor/icons/body.svg"
+@tool
+@icon("res://addons/godot-xr-tools/editor/icons/body.svg")
+class_name XRToolsSurfaceAudioType
 extends Resource
 
 
@@ -10,19 +11,19 @@ extends Resource
 
 
 ## Surface name
-export var name : String = ""
+@export var name : String = ""
 
 ## Audio stream to play when the player lands on this surface
-export var hit_sound : AudioStream
+@export var hit_sound : AudioStream
 
 ## Audio streams to play when the player walks on this surface
-export(Array, AudioStream) var walk_sounds : Array = []
+@export var walk_sounds :Array[AudioStream] = []
 
 ## Walking sound minimum pitch (to randomize steps)
-export(float, 0.5, 1.0) var walk_pitch_minimum : float = 0.8
+@export_range(0.5, 1.0) var walk_pitch_minimum : float = 0.8
 
 ## Walking sound maximum pitch (to randomize steps)
-export(float, 1.0, 2.0) var walk_pitch_maximum : float = 1.2
+@export_range(1.0, 2.0) var walk_pitch_maximum : float = 1.2
 
 
 # This method checks for configuration issues.

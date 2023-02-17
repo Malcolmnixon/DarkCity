@@ -1,215 +1,202 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=33 format=3 uid="uid://3qbpjqmd6467"]
 
-[ext_resource path="res://addons/godot-openxr/config/OpenXRConfig.gdns" type="Script" id=1]
-[ext_resource path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_tac_glove_low.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_tac_glove_low.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/godot-xr-tools/functions/function_pickup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_climb.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_glide.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_jump.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/freepd.com/Evil Incoming.mp3" type="AudioStream" id=8]
-[ext_resource path="res://DarkCity/Player/PlayerLogic.gd" type="Script" id=9]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_grapple.tscn" type="PackedScene" id=10]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_direct.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/godot-xr-tools/player/player_body.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_turn.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/freesound.org/565491__jakegwizdak__wind-loop.mp3" type="AudioStream" id=14]
-[ext_resource path="res://assets/freesound.org/231438__6polnic__hamp-rope-creaks.mp3" type="AudioStream" id=15]
-[ext_resource path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" type="AudioStream" id=16]
-[ext_resource path="res://DarkCity/Player/DeathFade.gd" type="Script" id=17]
-[ext_resource path="res://addons/kenney_particle_pack/trace_01.png" type="Texture" id=18]
-[ext_resource path="res://assets/freesound.org/9508__petenice__splash.mp3" type="AudioStream" id=19]
-[ext_resource path="res://assets/freesound.org/447922__breviceps__thud-falling-on-wooden-floor-snapping-breaking-neck.mp3" type="AudioStream" id=20]
-[ext_resource path="res://addons/godot-xr-tools/examples/fall_damage.tscn" type="PackedScene" id=21]
-[ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=22]
-[ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=23]
-[ext_resource path="res://DarkCity/Materials/HighlightMaterial.tres" type="Material" id=24]
-[ext_resource path="res://DarkCity/Materials/Rope.tres" type="Material" id=25]
-[ext_resource path="res://DarkCity/Player/ghost_hand_material.tres" type="Material" id=26]
-[ext_resource path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" type="PackedScene" id=27]
-[ext_resource path="res://DarkCity/Sounds/concrete_walk.tres" type="Resource" id=28]
+[ext_resource type="PackedScene" uid="uid://chumpejwiub7f" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_tac_glove_low.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bx1xdisoqo1f6" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_tac_glove_low.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4"]
+[ext_resource type="Material" uid="uid://p0q2df2dmy62" path="res://addons/godot-xr-tools/hands/materials/ghost_hand.tres" id="4_amysp"]
+[ext_resource type="PackedScene" uid="uid://bxm1ply47vaan" path="res://addons/godot-xr-tools/functions/movement_climb.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cvokcudrffkgc" path="res://addons/godot-xr-tools/functions/movement_glide.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7"]
+[ext_resource type="AudioStream" uid="uid://bsmrqhtvxlhjs" path="res://assets/freepd.com/Evil Incoming.mp3" id="8"]
+[ext_resource type="Script" path="res://DarkCity/Player/PlayerLogic.gd" id="9"]
+[ext_resource type="PackedScene" uid="uid://c78tjrtiyqna8" path="res://addons/godot-xr-tools/functions/movement_grapple.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="13"]
+[ext_resource type="AudioStream" uid="uid://c5ajwj6810fme" path="res://assets/freesound.org/565491__jakegwizdak__wind-loop.mp3" id="14"]
+[ext_resource type="AudioStream" uid="uid://cx5qgbbjnw4ln" path="res://assets/freesound.org/231438__6polnic__hamp-rope-creaks.mp3" id="15"]
+[ext_resource type="AudioStream" uid="uid://dhpjud5qil5pb" path="res://assets/freesound.org/473583__nox-sound__whoosh-rope.mp3" id="16"]
+[ext_resource type="Script" path="res://DarkCity/Player/DeathFade.gd" id="17"]
+[ext_resource type="Texture2D" uid="uid://bxl2qq5ejme3i" path="res://addons/kenney_particle_pack/trace_01.png" id="18"]
+[ext_resource type="AudioStream" uid="uid://b4x32f2cap3ya" path="res://assets/freesound.org/9508__petenice__splash.mp3" id="19"]
+[ext_resource type="PackedScene" uid="uid://d2yejwiwab3wv" path="res://addons/godot-xr-tools/examples/fall_damage.tscn" id="21"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="22"]
+[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="23"]
+[ext_resource type="Material" path="res://DarkCity/Materials/Rope.tres" id="25"]
+[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" id="27"]
+[ext_resource type="Resource" path="res://DarkCity/Sounds/concrete_walk.tres" id="28"]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="BoxMesh" id="1"]
 flip_faces = true
-size = Vector3( 1, 1, 1 )
 
-[sub_resource type="SpatialMaterial" id=2]
-flags_transparent = true
-flags_unshaded = true
-flags_no_depth_test = true
-albedo_color = Color( 0.431373, 0, 0, 0 )
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqc1i"]
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0)
 
-[sub_resource type="QuadMesh" id=6]
-size = Vector2( 0.001, 0.001 )
+[sub_resource type="QuadMesh" id="6"]
+size = Vector2(0.001, 0.001)
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="BoxMesh" id="7"]
 resource_local_to_scene = true
-size = Vector3( 0.05, 0.05, 0.05 )
+size = Vector3(0.05, 0.05, 0.05)
 subdivide_depth = 20
 
-[sub_resource type="SpatialMaterial" id=3]
-flags_unshaded = true
-params_blend_mode = 1
-params_cull_mode = 2
-params_billboard_mode = 2
-albedo_color = Color( 0.521569, 0.521569, 0.521569, 1 )
-albedo_texture = ExtResource( 18 )
+[sub_resource type="StandardMaterial3D" id="3"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.521569, 0.521569, 0.521569, 1)
+albedo_texture = ExtResource("18")
+billboard_mode = 2
 
-[sub_resource type="ParticlesMaterial" id=4]
-emission_shape = 2
-emission_box_extents = Vector3( 50, 20, 50 )
-direction = Vector3( 0, -1, 0 )
+[sub_resource type="ParticleProcessMaterial" id="4"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 20, 50)
+direction = Vector3(0, -1, 0)
 spread = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
 
-[sub_resource type="QuadMesh" id=5]
-size = Vector2( 0.4, 0.4 )
+[sub_resource type="QuadMesh" id="5"]
+size = Vector2(0.4, 0.4)
 
-[node name="Player" type="ARVROrigin"]
+[node name="Player" type="XROrigin3D"]
 
 [node name="Configuration" type="Node" parent="."]
-script = ExtResource( 1 )
-color_space = 0
-refresh_rate = 0.0
 
-[node name="ARVRCamera" type="ARVRCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 cull_mask = 524287
 fov = 65.0
 far = 1000.0
 
-[node name="DeathFade" type="Spatial" parent="ARVRCamera"]
-script = ExtResource( 17 )
+[node name="DeathFade" type="Node3D" parent="XRCamera3D"]
+script = ExtResource("17")
 
-[node name="DeathMesh" type="MeshInstance" parent="ARVRCamera/DeathFade"]
-mesh = SubResource( 1 )
+[node name="DeathMesh" type="MeshInstance3D" parent="XRCamera3D/DeathFade"]
+mesh = SubResource("1")
 skeleton = NodePath("../..")
-material/0 = SubResource( 2 )
+surface_material_override/0 = SubResource("StandardMaterial3D_rqc1i")
 
-[node name="Tween" type="Tween" parent="ARVRCamera/DeathFade"]
+[node name="VRCommonShaderCache" parent="XRCamera3D" instance=ExtResource("23")]
 
-[node name="VRCommonShaderCache" parent="ARVRCamera" instance=ExtResource( 23 )]
+[node name="TargetHighlight" type="MeshInstance3D" parent="XRCamera3D/VRCommonShaderCache"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = SubResource("6")
 
-[node name="TargetHighlight" type="MeshInstance" parent="ARVRCamera/VRCommonShaderCache"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-mesh = SubResource( 6 )
-material/0 = ExtResource( 24 )
+[node name="Rope" type="MeshInstance3D" parent="XRCamera3D/VRCommonShaderCache"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = SubResource("6")
 
-[node name="Rope" type="MeshInstance" parent="ARVRCamera/VRCommonShaderCache"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-mesh = SubResource( 6 )
-material/0 = ExtResource( 25 )
+[node name="LeftHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+pose = &"aim"
 
-[node name="LeftHandController" type="ARVRController" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5 )
+[node name="LeftHand" parent="LeftHandController" instance=ExtResource("3")]
+hand_material_override = ExtResource("4_amysp")
 
-[node name="LeftHand" parent="LeftHandController" instance=ExtResource( 3 )]
-hand_material_override = ExtResource( 26 )
+[node name="FunctionPickup" parent="LeftHandController" instance=ExtResource("4")]
 
-[node name="FunctionPickup" parent="LeftHandController" instance=ExtResource( 4 )]
-
-[node name="MovementDirect" parent="LeftHandController" instance=ExtResource( 11 )]
-enabled = false
-order = 10
+[node name="MovementDirect" parent="LeftHandController" instance=ExtResource("11")]
 max_speed = 5.0
 strafe = true
-
-[node name="MovementJump" parent="LeftHandController" instance=ExtResource( 7 )]
 enabled = false
-jump_button_id = 7
 
-[node name="RightHandController" type="ARVRController" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5 )
-controller_id = 2
+[node name="MovementJump" parent="LeftHandController" instance=ExtResource("7")]
+enabled = false
 
-[node name="RightHand" parent="RightHandController" instance=ExtResource( 2 )]
-hand_material_override = ExtResource( 26 )
+[node name="RightHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+pose = &"aim"
 
-[node name="FunctionPointer" parent="RightHandController" instance=ExtResource( 22 )]
+[node name="RightHand" parent="RightHandController" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 0.999879, -0.0155503, 0, 0.0155503, 0.999879, 0, 0, 0)
+hand_material_override = ExtResource("4_amysp")
+
+[node name="FunctionPointer" parent="RightHandController" instance=ExtResource("22")]
 laser_length = 1
 
-[node name="FunctionPickup" parent="RightHandController" instance=ExtResource( 4 )]
+[node name="FunctionPickup" parent="RightHandController" instance=ExtResource("4")]
 
-[node name="MovementDirect" parent="RightHandController" instance=ExtResource( 11 )]
-enabled = false
-order = 10
+[node name="MovementDirect" parent="RightHandController" instance=ExtResource("11")]
 max_speed = 5.0
-strafe = false
-
-[node name="MovementTurn" parent="RightHandController" instance=ExtResource( 13 )]
-
-[node name="MovementGrapple" parent="RightHandController" instance=ExtResource( 10 )]
 enabled = false
+
+[node name="MovementTurn" parent="RightHandController" instance=ExtResource("13")]
+
+[node name="MovementGrapple" parent="RightHandController" instance=ExtResource("10")]
 grapple_length = 50.0
 impulse_speed = 20.0
+enabled = false
 
 [node name="Grapple_Target" parent="RightHandController/MovementGrapple" index="1"]
-mesh = SubResource( 7 )
+mesh = SubResource("7")
 
 [node name="Line" parent="RightHandController/MovementGrapple/LineHelper" index="0"]
-material = ExtResource( 25 )
+material = ExtResource("25")
 
-[node name="MovementJump" parent="RightHandController" instance=ExtResource( 7 )]
+[node name="MovementJump" parent="RightHandController" instance=ExtResource("7")]
 enabled = false
-jump_button_id = 7
 
-[node name="PlayerBody" parent="." instance=ExtResource( 12 )]
+[node name="PlayerBody" parent="." instance=ExtResource("12")]
 enabled = false
 ground_control = 1
 
-[node name="MovementClimb" parent="." instance=ExtResource( 5 )]
-enabled = false
+[node name="MovementClimb" parent="." instance=ExtResource("5")]
 fling_multiplier = 2.0
-
-[node name="MovementGlide" parent="." instance=ExtResource( 6 )]
 enabled = false
+
+[node name="MovementGlide" parent="." instance=ExtResource("6")]
 turn_with_roll = true
 roll_turn_speed = 2.0
-
-[node name="FallDamage" parent="." instance=ExtResource( 21 )]
 enabled = false
+
+[node name="FallDamage" parent="." instance=ExtResource("21")]
 damage_threshold = 20.0
+enabled = false
 
-[node name="PlayerLogic" type="Spatial" parent="."]
-script = ExtResource( 9 )
+[node name="PlayerLogic" type="Node3D" parent="."]
+script = ExtResource("9")
 
-[node name="GameMusic" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 8 )
-unit_db = -7.826
+[node name="GameMusic" type="AudioStreamPlayer" parent="PlayerLogic"]
+stream = ExtResource("8")
+volume_db = -7.0
 autoplay = true
 
-[node name="GlideSound" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 14 )
+[node name="GlideSound" type="AudioStreamPlayer" parent="PlayerLogic"]
+stream = ExtResource("14")
 
-[node name="GrappleFire" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 16 )
+[node name="GrappleFire" type="AudioStreamPlayer" parent="PlayerLogic"]
+stream = ExtResource("16")
 
-[node name="GrappleSwing" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 15 )
+[node name="GrappleSwing" type="AudioStreamPlayer" parent="PlayerLogic"]
+stream = ExtResource("15")
 
-[node name="Fall" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 20 )
-unit_db = 30.0
+[node name="Fall" type="AudioStreamPlayer" parent="PlayerLogic"]
+volume_db = 30.0
 
-[node name="Drown" type="AudioStreamPlayer3D" parent="PlayerLogic"]
-stream = ExtResource( 19 )
-unit_db = 20.0
+[node name="Drown" type="AudioStreamPlayer" parent="PlayerLogic"]
+stream = ExtResource("19")
+volume_db = 20.0
 
-[node name="Particles" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
-material_override = SubResource( 3 )
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+material_override = SubResource("3")
 cast_shadow = 0
 extra_cull_margin = 180.0
 amount = 500
 lifetime = 3.0
-local_coords = false
-process_material = SubResource( 4 )
-draw_pass_1 = SubResource( 5 )
+process_material = SubResource("4")
+draw_pass_1 = SubResource("5")
 
-[node name="MovementFootstep" parent="." instance=ExtResource( 27 )]
+[node name="MovementFootstep" parent="." instance=ExtResource("27")]
 audio_db = -30.0
-default_surface_audio_type = ExtResource( 28 )
+default_surface_audio_type = ExtResource("28")
 steps_per_meter = 1.5
 
 [connection signal="grapple_finished" from="RightHandController/MovementGrapple" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]

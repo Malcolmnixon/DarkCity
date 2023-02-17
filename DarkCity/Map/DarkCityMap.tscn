@@ -1,95 +1,100 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://b5ns8602igak2"]
 
-[ext_resource path="res://DarkCity/Materials/Road.tres" type="Material" id=1]
-[ext_resource path="res://DarkCity/Materials/Water.tres" type="Material" id=2]
-[ext_resource path="res://DarkCity/SkyScrapers/SkyBridge.tscn" type="PackedScene" id=3]
-[ext_resource path="res://DarkCity/Blimp/Blimp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://DarkCity/SkyScrapers/SkyScraper1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://DarkCity/SkyScrapers/SkyScraper2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DarkCity/SkyScrapers/SkyScraper4.tscn" type="PackedScene" id=8]
-[ext_resource path="res://DarkCity/Map/BlimpFlight.gd" type="Script" id=9]
-[ext_resource path="res://default_env.tres" type="Environment" id=10]
+[ext_resource type="Material" path="res://DarkCity/Materials/Road.tres" id="1"]
+[ext_resource type="Material" path="res://DarkCity/Materials/Water.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://cg5oliuo0uo63" path="res://DarkCity/SkyScrapers/SkyBridge.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dk13evpt6wwbq" path="res://DarkCity/Blimp/Blimp.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper1.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper2.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ota15mis17bi" path="res://DarkCity/SkyScrapers/SkyScraper4.tscn" id="8"]
+[ext_resource type="Script" path="res://DarkCity/Map/BlimpFlight.gd" id="9"]
+[ext_resource type="Environment" uid="uid://d1gtfdrwvvh6f" path="res://default_env.tres" id="10"]
 
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 5000, 5000 )
+[sub_resource type="PlaneMesh" id="1"]
+material = ExtResource("2")
+size = Vector2(5000, 5000)
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape3D" id="3"]
 height = 4.0
 radius = 300.0
 
-[sub_resource type="CylinderMesh" id=4]
+[sub_resource type="CylinderMesh" id="4"]
+material = ExtResource("1")
 top_radius = 300.0
 bottom_radius = 300.0
 height = 4.0
 radial_segments = 48
 rings = 0
 
-[node name="DarkCityMap" type="Spatial"]
+[node name="DarkCityMap" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 10 )
+environment = ExtResource("10")
 
-[node name="Water" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
+light_bake_mode = 0
 
-[node name="Island" type="StaticBody" parent="."]
+[node name="Water" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
 
-[node name="CollisionShape" type="CollisionShape" parent="Island"]
-shape = SubResource( 3 )
+[node name="Island" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="Island"]
-mesh = SubResource( 4 )
-material/0 = ExtResource( 1 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Island"]
+shape = SubResource("3")
 
-[node name="SkyScraper6" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -56, 70 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Island"]
+mesh = SubResource("4")
 
-[node name="SkyScraper3" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -72, 0 )
+[node name="SkyScraper6" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -56, 70)
 
-[node name="SkyScraper7" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -66, -70 )
+[node name="SkyScraper3" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -72, 0)
 
-[node name="SkyScraper4" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -43, 70 )
+[node name="SkyScraper7" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -66, -70)
 
-[node name="SkyScraper10" parent="." instance=ExtResource( 6 )]
+[node name="SkyScraper4" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -43, 70)
 
-[node name="SkyScraper2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -31.1, 70 )
+[node name="SkyScraper10" parent="." instance=ExtResource("6")]
 
-[node name="SkyScraper8" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -45.3, -70 )
+[node name="SkyScraper2" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -31.1, 70)
 
-[node name="SkyScraper5" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -14, 0 )
+[node name="SkyScraper8" parent="." instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -45.3, -70)
 
-[node name="SkyScraper11" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -40.7, -70 )
+[node name="SkyScraper5" parent="." instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, -14, 0)
 
-[node name="SkyBridge" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8, 136, 9.3 )
+[node name="SkyScraper11" parent="." instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, -40.7, -70)
 
-[node name="SkyBridge4" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8, 92.5, -12.6 )
+[node name="SkyBridge" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8, 136, 9.3)
 
-[node name="SkyBridge2" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 77, 9.4 )
+[node name="SkyBridge4" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8, 92.5, -12.6)
 
-[node name="SkyBridge3" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 79.5, 67.5, -33.3 )
+[node name="SkyBridge2" parent="." instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 77, 9.4)
 
-[node name="SkyBridge5" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.9, 66, -33.3 )
+[node name="SkyBridge3" parent="." instance=ExtResource("3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 79.5, 67.5, -33.3)
 
-[node name="SkyBridge6" parent="." instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.54972e-06, 89.4, 34.7 )
+[node name="SkyBridge5" parent="." instance=ExtResource("3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.9, 66, -33.3)
 
-[node name="BlimpFlight" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 212, 0 )
-script = ExtResource( 9 )
+[node name="SkyBridge6" parent="." instance=ExtResource("3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.54972e-06, 89.4, 34.7)
 
-[node name="Blimp" parent="BlimpFlight" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 0 )
+[node name="BlimpFlight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 212, 0)
+script = ExtResource("9")
+
+[node name="Blimp" parent="BlimpFlight" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 0)

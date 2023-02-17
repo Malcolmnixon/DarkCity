@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource path="res://DarkCity/Materials/RustedMetal.tres" type="Material" id=1]
-[ext_resource path="res://addons/godot-xr-tools/objects/pickable.gd" type="Script" id=2]
-[ext_resource path="res://DarkCity/Target/Target.gd" type="Script" id=3]
-[ext_resource path="res://assets/freesound.org/487725__matrixxx__ticking-timer-05-sec.mp3" type="AudioStream" id=4]
-[ext_resource path="res://DarkCity/Materials/HighlightMaterial.tres" type="Material" id=5]
-[ext_resource path="res://DarkCity/Materials/Fuse.tres" type="Material" id=6]
+[ext_resource type="Material" path="res://DarkCity/Materials/RustedMetal.tres" id="1"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="2"]
+[ext_resource type="Script" path="res://DarkCity/Target/Target.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://c3ib7uficph5h" path="res://assets/freesound.org/487725__matrixxx__ticking-timer-05-sec.mp3" id="4"]
+[ext_resource type="Material" path="res://DarkCity/Materials/HighlightMaterial.tres" id="5"]
+[ext_resource type="Material" path="res://DarkCity/Materials/Fuse.tres" id="6"]
 
 [sub_resource type="CylinderMesh" id=5]
 material = ExtResource( 1 )
@@ -19,79 +19,79 @@ rings = 0
 material = ExtResource( 1 )
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="CylinderShape" id=7]
+[sub_resource type="CylinderShape3D" id=7]
 height = 1.5
 radius = 0.4
 
-[sub_resource type="CubeMesh" id=8]
+[sub_resource type="BoxMesh" id=8]
 material = ExtResource( 6 )
 size = Vector3( 0.2, 0.1, 0.2 )
 
-[sub_resource type="BoxShape" id=10]
+[sub_resource type="BoxShape3D" id=10]
 extents = Vector3( 0.1, 0.05, 0.1 )
 
 [sub_resource type="QuadMesh" id=1]
 material = ExtResource( 5 )
 size = Vector2( 200, 4 )
 
-[node name="Target" type="Spatial" groups=["target"]]
+[node name="Target" type="Node3D" groups=["target"]]
 script = ExtResource( 3 )
 
-[node name="Bomb" type="Spatial" parent="."]
+[node name="Bomb" type="Node3D" parent="."]
 
-[node name="Body" type="StaticBody" parent="Bomb"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
+[node name="Body" type="StaticBody3D" parent="Bomb"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="BodyMesh" type="MeshInstance" parent="Bomb/Body"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
+[node name="BodyMesh" type="MeshInstance3D" parent="Bomb/Body"]
+transform = Transform3D( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 5 )
 
-[node name="BaseMesh" type="MeshInstance" parent="Bomb/Body"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.7, 0 )
+[node name="BaseMesh" type="MeshInstance3D" parent="Bomb/Body"]
+transform = Transform3D( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.7, 0 )
 mesh = SubResource( 6 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Bomb/Body"]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bomb/Body"]
+transform = Transform3D( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 7 )
 
-[node name="Fuse" type="RigidBody" parent="Bomb"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23763, 0 )
+[node name="Fuse" type="RigidBody3D" parent="Bomb"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23763, 0 )
 mode = 1
 script = ExtResource( 2 )
 ranged_grab_method = 0
 
-[node name="MeshInstance" type="MeshInstance" parent="Bomb/Fuse"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bomb/Fuse"]
 mesh = SubResource( 8 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Bomb/Fuse"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bomb/Fuse"]
 shape = SubResource( 10 )
 
-[node name="Highlight" type="Spatial" parent="Bomb"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+[node name="Highlight" type="Node3D" parent="Bomb"]
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Bomb/Highlight"]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 95, 2 )
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bomb/Highlight"]
+transform = Transform3D( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 95, 2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
 
-[node name="MeshInstance2" type="MeshInstance" parent="Bomb/Highlight"]
-transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -2, 95, 1.19209e-07 )
+[node name="MeshInstance2" type="MeshInstance3D" parent="Bomb/Highlight"]
+transform = Transform3D( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
 
-[node name="MeshInstance3" type="MeshInstance" parent="Bomb/Highlight"]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 2, 95, 1.19209e-07 )
+[node name="MeshInstance3" type="MeshInstance3D" parent="Bomb/Highlight"]
+transform = Transform3D( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
 
-[node name="MeshInstance4" type="MeshInstance" parent="Bomb/Highlight"]
-transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 95, -2 )
+[node name="MeshInstance4" type="MeshInstance3D" parent="Bomb/Highlight"]
+transform = Transform3D( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 95, -2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
 
 [node name="TickingSound" type="AudioStreamPlayer3D" parent="Bomb"]
 stream = ExtResource( 4 )
-unit_db = 2.0
+volume_db = 2.0
 unit_size = 5.0
 autoplay = true
 

@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str"
+uid="uid://cp6tjbjuu85e5"
+path="res://.godot/imported/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str"
 
 [deps]
 
 source_file="res://DarkCity/Sounds/Threat.mp3"
-dest_files=[ "res://.import/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str" ]
+dest_files=["res://.godot/imported/Threat.mp3-898cacc6e552d9458d22ac7224a8ff2b.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
