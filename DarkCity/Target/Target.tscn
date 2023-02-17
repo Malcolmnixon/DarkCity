@@ -4,9 +4,11 @@
 [ext_resource path="res://addons/godot-xr-tools/objects/pickable.gd" type="Script" id=2]
 [ext_resource path="res://DarkCity/Target/Target.gd" type="Script" id=3]
 [ext_resource path="res://assets/freesound.org/487725__matrixxx__ticking-timer-05-sec.mp3" type="AudioStream" id=4]
-[ext_resource path="res://DarkCity/Target/HighlightMaterial.tres" type="Material" id=5]
+[ext_resource path="res://DarkCity/Materials/HighlightMaterial.tres" type="Material" id=5]
+[ext_resource path="res://DarkCity/Materials/Fuse.tres" type="Material" id=6]
 
 [sub_resource type="CylinderMesh" id=5]
+material = ExtResource( 1 )
 top_radius = 0.4
 bottom_radius = 0.4
 height = 1.5
@@ -14,23 +16,22 @@ radial_segments = 24
 rings = 0
 
 [sub_resource type="PrismMesh" id=6]
+material = ExtResource( 1 )
 size = Vector3( 1, 1, 1 )
 
 [sub_resource type="CylinderShape" id=7]
-radius = 0.4
 height = 1.5
+radius = 0.4
 
 [sub_resource type="CubeMesh" id=8]
+material = ExtResource( 6 )
 size = Vector3( 0.2, 0.1, 0.2 )
-
-[sub_resource type="SpatialMaterial" id=9]
-flags_unshaded = true
-albedo_color = Color( 0.313726, 0.0392157, 0.0392157, 1 )
 
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 0.1, 0.05, 0.1 )
 
 [sub_resource type="QuadMesh" id=1]
+material = ExtResource( 5 )
 size = Vector2( 200, 4 )
 
 [node name="Target" type="Spatial" groups=["target"]]
@@ -44,12 +45,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 [node name="BodyMesh" type="MeshInstance" parent="Bomb/Body"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 1 )
 
 [node name="BaseMesh" type="MeshInstance" parent="Bomb/Body"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.7, 0 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bomb/Body"]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 0 )
@@ -59,12 +58,10 @@ shape = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23763, 0 )
 mode = 1
 script = ExtResource( 2 )
-reset_transform_on_pickup = false
 ranged_grab_method = 0
 
 [node name="MeshInstance" type="MeshInstance" parent="Bomb/Fuse"]
 mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bomb/Fuse"]
 shape = SubResource( 10 )
@@ -76,25 +73,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 95, 2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 5 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 5 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 2, 95, 1.19209e-07 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 5 )
 
 [node name="MeshInstance4" type="MeshInstance" parent="Bomb/Highlight"]
 transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 95, -2 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../../..")
-material/0 = ExtResource( 5 )
 
 [node name="TickingSound" type="AudioStreamPlayer3D" parent="Bomb"]
 stream = ExtResource( 4 )

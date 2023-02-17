@@ -9,18 +9,21 @@
 extents = Vector3( 20, 80, 20 )
 
 [sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
 size = Vector3( 40, 160, 40 )
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 20, 2, 20 )
 
 [sub_resource type="CubeMesh" id=5]
+material = ExtResource( 4 )
 size = Vector3( 40, 4, 40 )
 
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 18, 2, 0.5 )
 
 [sub_resource type="CubeMesh" id=8]
+material = ExtResource( 3 )
 size = Vector3( 36, 4, 1 )
 
 [node name="SkyScraper4" type="Spatial"]
@@ -34,7 +37,6 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Tower"]
 mesh = SubResource( 2 )
-material/0 = ExtResource( 2 )
 
 [node name="Roof" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 162, 0 )
@@ -45,7 +47,6 @@ shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Roof"]
 mesh = SubResource( 5 )
-material/0 = ExtResource( 4 )
 
 [node name="Edge1" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 164, -20 )
@@ -56,7 +57,6 @@ shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Edge1"]
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
 
 [node name="Edge2" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 164, 20 )
@@ -67,7 +67,6 @@ shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Edge2"]
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
 
 [node name="Edge3" type="StaticBody" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 164, 0 )
@@ -78,7 +77,6 @@ shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Edge3"]
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
 
 [node name="Edge4" type="StaticBody" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 164, 0 )
@@ -89,4 +87,3 @@ shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Edge4"]
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )

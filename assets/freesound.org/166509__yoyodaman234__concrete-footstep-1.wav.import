@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/166509__yoyodaman234__concrete-footstep-1.wav-ad73802964393c2af1382d64bbe8f33c.sample"
+
+[deps]
+
+source_file="res://assets/freesound.org/166509__yoyodaman234__concrete-footstep-1.wav"
+dest_files=[ "res://.import/166509__yoyodaman234__concrete-footstep-1.wav-ad73802964393c2af1382d64bbe8f33c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

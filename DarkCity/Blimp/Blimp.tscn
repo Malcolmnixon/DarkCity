@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://DarkCity/Blimp/BlimpFabric.tres" type="Material" id=1]
-[ext_resource path="res://DarkCity/Blimp/BlimpSign.tres" type="Material" id=2]
-[ext_resource path="res://DarkCity/Blimp/BlimpSkin.tres" type="Material" id=3]
-[ext_resource path="res://DarkCity/Blimp/FanGrate.tres" type="Material" id=4]
+[ext_resource path="res://DarkCity/Materials/BlimpFabric.tres" type="Material" id=1]
+[ext_resource path="res://DarkCity/Materials/BlimpSign.tres" type="Material" id=2]
+[ext_resource path="res://DarkCity/Materials/BlimpSkin.tres" type="Material" id=3]
+[ext_resource path="res://DarkCity/Materials/BlimpBlack.tres" type="Material" id=4]
 [ext_resource path="res://addons/godot-xr-tools/objects/climbable.gd" type="Script" id=5]
 [ext_resource path="res://assets/freesound.org/607776__therandomsoundbyte2637__75-hz-flying-plane-sound-loop.mp3" type="AudioStream" id=6]
 
@@ -16,6 +16,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 1344,
+"material": ExtResource( 1 ),
+"name": "Fabric",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 328
@@ -27,6 +29,8 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 48,
+"material": ExtResource( 2 ),
+"name": "Sign",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 15
@@ -38,6 +42,8 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 48,
+"material": ExtResource( 2 ),
+"name": "Sign",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 15
@@ -55,6 +61,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 90,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 60
@@ -66,15 +74,12 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 18,
+"material": ExtResource( 4 ),
+"name": "Black",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 12
 }
-
-[sub_resource type="SpatialMaterial" id=10]
-albedo_color = Color( 0, 0, 0, 1 )
-metallic = 0.8
-metallic_specular = 1.0
 
 [sub_resource type="ConvexPolygonShape" id=11]
 points = PoolVector3Array( 3.12678, -6, 6.09679, -3.12678, -6, 6.09679, 2.58504, -10, 5.25435, 3.12678, -6, -6.61575, -2.58565, -10, 5.25435, -3.12678, -6, -6.61575, 2.58504, -10, -5.25565, 2.14491, -9.52662, -5.41741, 2.35181, -8, -5.93632, -2.58565, -10, -5.25565, -2.35243, -8, -5.93632, -2.14553, -9.52662, -5.41741 )
@@ -88,6 +93,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
@@ -105,6 +112,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
@@ -122,6 +131,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
@@ -139,6 +150,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
@@ -156,6 +169,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 96,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 34
@@ -167,6 +182,8 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 84,
+"material": ExtResource( 4 ),
+"name": "Black",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 32
@@ -184,6 +201,8 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 96,
+"material": ExtResource( 3 ),
+"name": "Skin",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 34
@@ -195,6 +214,8 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 84,
+"material": ExtResource( 4 ),
+"name": "Black",
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 32
@@ -209,9 +230,6 @@ script = ExtResource( 5 )
 [node name="Balloon" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
-material/1 = ExtResource( 2 )
-material/2 = ExtResource( 2 )
 
 [node name="BalloonCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0 )
@@ -219,8 +237,6 @@ shape = SubResource( 9 )
 
 [node name="Gondola" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
-material/0 = ExtResource( 3 )
-material/1 = SubResource( 10 )
 
 [node name="GondolaCollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 11 )
@@ -228,7 +244,6 @@ shape = SubResource( 11 )
 [node name="FinTop" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.2144 )
 mesh = SubResource( 3 )
-material/0 = ExtResource( 3 )
 
 [node name="FinTopCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.2144 )
@@ -237,7 +252,6 @@ shape = SubResource( 12 )
 [node name="FinBottom" type="MeshInstance" parent="."]
 transform = Transform( -1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 0, 21.2144 )
 mesh = SubResource( 4 )
-material/0 = ExtResource( 3 )
 
 [node name="FinBottomCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( -1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 0, 0, 1, 0, 0, 21.2144 )
@@ -246,7 +260,6 @@ shape = SubResource( 13 )
 [node name="FinLeft" type="MeshInstance" parent="."]
 transform = Transform( 1.78814e-07, -1, 0, 1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 21.2144 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 3 )
 
 [node name="FinLeftCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.78814e-07, -1, 0, 1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 21.2144 )
@@ -255,7 +268,6 @@ shape = SubResource( 14 )
 [node name="FinRight" type="MeshInstance" parent="."]
 transform = Transform( 1.78814e-07, 1, 0, -1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 21.2144 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 3 )
 
 [node name="FinRightCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1.78814e-07, 1, 0, -1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 21.2144 )
@@ -264,8 +276,6 @@ shape = SubResource( 15 )
 [node name="LeftFan" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.78814e-07, -1, 0, 1, 1.78814e-07, -3.59, -8.98375, 4 )
 mesh = SubResource( 7 )
-material/0 = ExtResource( 3 )
-material/1 = ExtResource( 4 )
 
 [node name="LeftFanCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.78814e-07, -1, 0, 1, 1.78814e-07, -3.59, -8.98375, 4 )
@@ -274,8 +284,6 @@ shape = SubResource( 16 )
 [node name="RightFan" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.78814e-07, -1, 0, 1, 1.78814e-07, 3.59, -8.98375, 4 )
 mesh = SubResource( 8 )
-material/0 = ExtResource( 3 )
-material/1 = ExtResource( 4 )
 
 [node name="RightFanCollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.78814e-07, -1, 0, 1, 1.78814e-07, 3.59, -8.98375, 4 )

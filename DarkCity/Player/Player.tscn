@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://addons/godot-openxr/config/OpenXRConfig.gdns" type="Script" id=1]
 [ext_resource path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_tac_glove_low.tscn" type="PackedScene" id=2]
@@ -23,9 +23,11 @@
 [ext_resource path="res://addons/godot-xr-tools/examples/fall_damage.tscn" type="PackedScene" id=21]
 [ext_resource path="res://addons/godot-xr-tools/functions/function_pointer.tscn" type="PackedScene" id=22]
 [ext_resource path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" type="PackedScene" id=23]
-[ext_resource path="res://DarkCity/Target/HighlightMaterial.tres" type="Material" id=24]
+[ext_resource path="res://DarkCity/Materials/HighlightMaterial.tres" type="Material" id=24]
 [ext_resource path="res://DarkCity/Materials/Rope.tres" type="Material" id=25]
 [ext_resource path="res://DarkCity/Player/ghost_hand_material.tres" type="Material" id=26]
+[ext_resource path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" type="PackedScene" id=27]
+[ext_resource path="res://DarkCity/Sounds/concrete_walk.tres" type="Resource" id=28]
 
 [sub_resource type="CubeMesh" id=1]
 flip_faces = true
@@ -75,7 +77,6 @@ refresh_rate = 0.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 cull_mask = 524287
 fov = 65.0
-near = 0.1
 far = 1000.0
 
 [node name="DeathFade" type="Spatial" parent="ARVRCamera"]
@@ -155,7 +156,7 @@ jump_button_id = 7
 
 [node name="PlayerBody" parent="." instance=ExtResource( 12 )]
 enabled = false
-eye_forward_offset = 0.5
+ground_control = 1
 
 [node name="MovementClimb" parent="." instance=ExtResource( 5 )]
 enabled = false
@@ -205,6 +206,11 @@ lifetime = 3.0
 local_coords = false
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
+
+[node name="MovementFootstep" parent="." instance=ExtResource( 27 )]
+audio_db = -30.0
+default_surface_audio_type = ExtResource( 28 )
+steps_per_meter = 1.5
 
 [connection signal="grapple_finished" from="RightHandController/MovementGrapple" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_finished"]
 [connection signal="grapple_started" from="RightHandController/MovementGrapple" to="PlayerLogic" method="_on_Function_Grapple_movement_grapple_started"]

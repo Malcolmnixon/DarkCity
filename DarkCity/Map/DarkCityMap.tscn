@@ -15,8 +15,8 @@
 size = Vector2( 5000, 5000 )
 
 [sub_resource type="CylinderShape" id=3]
-radius = 300.0
 height = 4.0
+radius = 300.0
 
 [sub_resource type="CylinderMesh" id=4]
 top_radius = 300.0

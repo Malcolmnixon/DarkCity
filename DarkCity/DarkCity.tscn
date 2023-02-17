@@ -82,6 +82,7 @@ update_mode = 2
 throttle_fps = 10.0
 
 [node name="StartXR" parent="." instance=ExtResource( 13 )]
+target_refresh_rate = 90.0
 
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]
