@@ -30,7 +30,7 @@ func _ready():
 
 
 func _process(_delta):
-	if alive and player_body.kinematic_node.transform.origin.y < 0.0:
+	if alive and player_body.global_position.y < 0.0:
 		alive = false
 		GameSignals.emit_signal("death_by_drowning")
 

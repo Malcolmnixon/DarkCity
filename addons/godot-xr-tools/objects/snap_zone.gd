@@ -1,3 +1,4 @@
+@tool
 class_name XRToolsSnapZone
 extends Area3D
 
@@ -23,7 +24,10 @@ enum SnapMode {
 
 
 ## Enable or disable snap-zone
-@export var enabled : bool = true
+@export var enabled : bool = true: set = _set_enabled
+
+## Optional audio stream to play when a object snaps to the zone
+@export var stash_sound : AudioStream
 
 ## Grab distance
 @export var grab_distance : float = 0.3: set = _set_grab_distance
@@ -70,13 +74,14 @@ func _ready():
 	_update_snap_mode()
 
 	# Perform the initial object check when next idle
-	call_deferred("_initial_object_check")
+	if not Engine.is_editor_hint():
+		_initial_object_check.call_deferred()
 
 
 # Called on each frame to update the pickup
 func _process(_delta):
-	# Skip if not enabled
-	if not enabled:
+	# Skip if in editor or not enabled
+	if Engine.is_editor_hint() or not enabled:
 		return
 
 	# Skip if we aren't doing range-checking
@@ -94,7 +99,7 @@ func _process(_delta):
 			continue
 
 		# pick up our target
-		_pick_up_object(o)
+		pick_up_object(o)
 		return
 
 
@@ -130,14 +135,10 @@ func action():
 	pass
 
 
-# Pickable Method: Ignore snap-zone proximity to grippers
-func increase_is_closest():
-	pass
-
-
-# Pickable Method: Ignore snap-zone proximity to grippers
-func decrease_is_closest():
-	pass
+# Ignore highlighting requests from XRToolsFunctionPickup
+func request_highlight(from : Node, on : bool = true) -> void:
+	if picked_up_object:
+		picked_up_object.request_highlight(from, on)
 
 
 # Pickable Method: Object being grabbed from this snap zone
@@ -158,8 +159,8 @@ func drop_object() -> void:
 	# let go of this object
 	picked_up_object.let_go(Vector3.ZERO, Vector3.ZERO)
 	picked_up_object = null
-	emit_signal("has_dropped")
-	emit_signal("highlight_updated", self, true)
+	has_dropped.emit()
+	highlight_updated.emit(self, enabled)
 
 
 # Check for an initial object pickup
@@ -167,10 +168,10 @@ func _initial_object_check() -> void:
 	# Check for an initial object
 	if initial_object:
 		# Force pick-up the initial object
-		_pick_up_object(get_node(initial_object))
+		pick_up_object(get_node(initial_object))
 	else:
-		# Show highlight when empty
-		emit_signal("highlight_updated", self, true)
+		# Show highlight when empty and enabled
+		highlight_updated.emit(self, enabled)
 
 
 # Called when a body enters the snap zone
@@ -205,7 +206,7 @@ func _on_snap_zone_body_entered(target: Node3D) -> void:
 
 	# Show highlight when something could be snapped
 	if not is_instance_valid(picked_up_object):
-		emit_signal("close_highlight_updated", self, true)
+		close_highlight_updated.emit(self, enabled)
 
 
 # Called when a body leaves the snap zone
@@ -219,11 +220,16 @@ func _on_snap_zone_body_exited(target: Node3D) -> void:
 
 	# Hide highlight when nothing could be snapped
 	if _object_in_grab_area.is_empty():
-		emit_signal("close_highlight_updated", self, false)
+		close_highlight_updated.emit(self, false)
+
+
+# Test if this snap zone has a picked up object
+func has_snapped_object() -> bool:
+	return is_instance_valid(picked_up_object)
 
 
 # Pick up the specified object
-func _pick_up_object(target: Node3D) -> void:
+func pick_up_object(target: Node3D) -> void:
 	# check if already holding an object
 	if is_instance_valid(picked_up_object):
 		# skip if holding the target object
@@ -238,12 +244,28 @@ func _pick_up_object(target: Node3D) -> void:
 
 	# Pick up our target. Note, target may do instant drop_and_free
 	picked_up_object = target
+	var player = get_node("AudioStreamPlayer3D")
+	if is_instance_valid(player):
+		if player.playing:
+			player.stop()
+		player.stream = stash_sound
+		player.play()
+
 	target.pick_up(self, null)
 
 	# If object picked up then emit signal
 	if is_instance_valid(picked_up_object):
-		emit_signal("has_picked_up", picked_up_object)
-		emit_signal("highlight_updated", self, false)
+		has_picked_up.emit(picked_up_object)
+		highlight_updated.emit(self, false)
+
+
+# Called when the enabled property has been modified
+func _set_enabled(p_enabled: bool) -> void:
+	enabled = p_enabled
+	if is_inside_tree:
+		highlight_updated.emit(
+			self,
+			enabled and not is_instance_valid(picked_up_object))
 
 
 # Called when the grab distance has been modified
@@ -296,4 +318,4 @@ func _on_target_dropped(target: Node3D) -> void:
 
 	# Pick up the target if we can
 	if target.can_pick_up(self):
-		_pick_up_object(target)
+		pick_up_object(target)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b5ns8602igak2" path="res://DarkCity/Map/DarkCityMap.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://3qbpjqmd6467" path="res://DarkCity/Player/Player.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://DarkCity/Target/Target.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c44wkp8hckhnj" path="res://DarkCity/Target/Target.tscn" id="3"]
 [ext_resource type="Script" path="res://DarkCity/BombGame.gd" id="4"]
 [ext_resource type="AudioStream" uid="uid://btoj6v2rbxq7x" path="res://DarkCity/Sounds/RadioChatter_1b.ogg" id="5"]
 [ext_resource type="AudioStream" uid="uid://bts1nm65cray8" path="res://assets/freesound.org/explosion.mp3" id="6"]
@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dekdc6lpddm41" path="res://DarkCity/Sounds/RadioChatter_3.ogg" id="9"]
 [ext_resource type="AudioStream" uid="uid://bvxxhicqqbles" path="res://DarkCity/Sounds/RadioChatter_4.ogg" id="10"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://DarkCity/StartScreen/StartScreen.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://b6ixi7pyyyhr7" path="res://DarkCity/StartScreen/StartScreen.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="13"]
 
 [node name="World3D" type="Node3D"]
@@ -75,15 +75,13 @@ one_shot = true
 [node name="StartScreen" parent="BombGame" instance=ExtResource("11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 205.5, -1.6)
 screen_size = Vector2(2.048, 1.2)
-viewport_size = Vector2(1024, 600)
-unshaded = true
 scene = ExtResource("12")
+viewport_size = Vector2(1024, 600)
 update_mode = 2
 throttle_fps = 10.0
+unshaded = true
 
 [node name="StartXR" parent="." instance=ExtResource("13")]
-physics_rate_multiplier = 1
-target_refresh_rate = 90.0
 
 [connection signal="finished" from="BombGame/ThreatMessage" to="BombGame" method="_on_ThreatMessage_finished"]
 [connection signal="finished" from="BombGame/Explosion" to="BombGame" method="_on_Explosion_finished"]

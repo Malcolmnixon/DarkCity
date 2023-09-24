@@ -29,6 +29,9 @@ signal xr_ended
 ## If true, the XR interface is automatically initialized
 @export var auto_initialize : bool = true
 
+## Adjusts the pixel density on the rendering target
+@export var render_target_size_multiplier : float = 1.0
+
 ## If true, the XR passthrough is enabled (OpenXR only)
 @export var enable_passthrough : bool = false: set = _set_enable_passthrough
 
@@ -74,16 +77,23 @@ func initialize() -> bool:
 
 
 # Check for configuration issues
-func _get_configuration_warning():
-	if physics_rate_multiplier < 1:
-		return "Physics rate multiplier should be at least 1x the HMD rate"
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
 
-	return ""
+	if physics_rate_multiplier < 1:
+		warnings.append("Physics rate multiplier should be at least 1x the HMD rate")
+
+	return warnings
 
 
 # Perform OpenXR setup
 func _setup_for_openxr() -> bool:
 	print("OpenXR: Configuring interface")
+
+	# Set the render target size multiplier - must be done befor initializing interface
+	# NOTE: Only implemented in Godot 4.1+
+	if "render_target_size_multiplier" in xr_interface:
+		xr_interface.render_target_size_multiplier = render_target_size_multiplier
 
 	# Initialize the OpenXR interface
 	if not xr_interface.is_initialized():
@@ -100,6 +110,9 @@ func _setup_for_openxr() -> bool:
 	# Check for passthrough
 	if enable_passthrough and xr_interface.is_passthrough_supported():
 		enable_passthrough = xr_interface.start_passthrough()
+
+	# Disable vsync
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
 	# Switch the viewport to XR
 	get_viewport().use_xr = true

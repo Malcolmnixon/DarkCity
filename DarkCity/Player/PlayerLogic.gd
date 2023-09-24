@@ -7,6 +7,9 @@ func _ready():
 	GameSignals.connect("death_by_falling",Callable(self,"_on_death_by_falling"))
 	GameSignals.connect("death_by_drowning",Callable(self,"_on_death_by_drowning"))
 
+	await get_tree().create_timer(1.0).timeout
+	XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)
+
 
 func _on_game_started():
 	# Disable screen controls

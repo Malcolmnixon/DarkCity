@@ -3,13 +3,13 @@
 [ext_resource type="Material" path="res://DarkCity/Materials/Road.tres" id="1"]
 [ext_resource type="Material" path="res://DarkCity/Materials/Water.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://cg5oliuo0uo63" path="res://DarkCity/SkyScrapers/SkyBridge.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dk13evpt6wwbq" path="res://DarkCity/Blimp/Blimp.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper1.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper2.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://csskw1hx1lf2r" path="res://DarkCity/SkyScrapers/SkyScraper1.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bcmkd5vgewt53" path="res://DarkCity/SkyScrapers/SkyScraper2.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://b46b784pif5kd" path="res://DarkCity/SkyScrapers/SkyScraper3.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://ota15mis17bi" path="res://DarkCity/SkyScrapers/SkyScraper4.tscn" id="8"]
 [ext_resource type="Script" path="res://DarkCity/Map/BlimpFlight.gd" id="9"]
 [ext_resource type="Environment" uid="uid://d1gtfdrwvvh6f" path="res://default_env.tres" id="10"]
+[ext_resource type="PackedScene" uid="uid://diitwjl0irwvi" path="res://DarkCity/Blimp/Blimp2.tscn" id="10_gjj7i"]
 
 [sub_resource type="PlaneMesh" id="1"]
 material = ExtResource("2")
@@ -93,8 +93,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.9,
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.54972e-06, 89.4, 34.7)
 
 [node name="BlimpFlight" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 212, 0)
+transform = Transform3D(0.841511, 0, -0.54024, 0, 1, 0, 0.54024, 0, 0.841511, 0, 212, 0)
 script = ExtResource("9")
 
-[node name="Blimp" parent="BlimpFlight" instance=ExtResource("4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79, 0, 0)
+[node name="Blimp2" parent="BlimpFlight" instance=ExtResource("10_gjj7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 0)

@@ -13,7 +13,10 @@ extends Resource
 ## Surface name
 @export var name : String = ""
 
-## Audio stream to play when the player lands on this surface
+## Optional audio stream to play when the player jumps on this surface
+@export var jump_sound : AudioStream
+
+## Optional audio stream to play when the player lands on this surface
 @export var hit_sound : AudioStream
 
 ## Audio streams to play when the player walks on this surface
@@ -27,18 +30,12 @@ extends Resource
 
 
 # This method checks for configuration issues.
-func _get_configuration_warning():
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+
 	# Verify the camera
 	if name == "":
-		return "Surface audio type must have a name"
+		warnings.append("Surface audio type must have a name")
 
-	# Verify hit sound
-	if !hit_sound:
-		return "Surface audio type must specify a hit audio stream"
-
-	# Verify walk sounds
-	if walk_sounds.size() == 0:
-		return "Surface audio type must specify one or more walk audio streams"
-
-	# No configuration issues detected
-	return ""
+	# Return warnings
+	return warnings

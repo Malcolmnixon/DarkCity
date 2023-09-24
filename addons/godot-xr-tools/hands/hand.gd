@@ -37,6 +37,9 @@ signal hand_scale_changed(scale)
 ## Last world scale (for scaling hands)
 var _last_world_scale : float = 1.0
 
+## Controller used for input/tracking
+var _controller : XRController3D
+
 ## Initial hand transform (from controller) - used for scaling hands
 var _transform : Transform3D
 
@@ -90,6 +93,9 @@ func _ready() -> void:
 	# Save the initial hand transform
 	_transform = transform
 
+	# Find our controller
+	_controller = XRTools.find_xr_ancestor(self, "*", "XRController3D")
+
 	# Find the relevant hand nodes
 	_hand_mesh = _find_child(self, "MeshInstance3D")
 	_animation_player = _find_child(self, "AnimationPlayer")
@@ -116,10 +122,9 @@ func _process(_delta: float) -> void:
 		emit_signal("hand_scale_changed", _last_world_scale)
 
 	# Animate the hand mesh with the controller inputs
-	var controller : XRController3D = get_parent()
-	if controller:
-		var grip : float = controller.get_float(grip_action)
-		var trigger : float = controller.get_float(trigger_action)
+	if _controller:
+		var grip : float = _controller.get_float(grip_action)
+		var trigger : float = _controller.get_float(trigger_action)
 
 		# Allow overriding of grip and trigger
 		if _force_grip >= 0.0: grip = _force_grip
@@ -131,26 +136,26 @@ func _process(_delta: float) -> void:
 
 
 # This method verifies the hand has a valid configuration.
-func _get_configuration_warning():
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+
 	# Check hand for mesh instance
 	if not _find_child(self, "MeshInstance3D"):
-		return "Hand does not have a MeshInstance3D"
+		warnings.append("Hand does not have a MeshInstance3D")
 
 	# Check hand for animation player
 	if not _find_child(self, "AnimationPlayer"):
-		return "Hand does not have a AnimationPlayer"
+		warnings.append("Hand does not have a AnimationPlayer")
 
 	# Check hand for animation tree
 	var tree : AnimationTree = _find_child(self, "AnimationTree")
 	if not tree:
-		return "Hand does not have a AnimationTree"
+		warnings.append("Hand does not have a AnimationTree")
+	elif not tree.tree_root:
+		warnings.append("Hand AnimationTree has no root")
 
-	# Check hand animation tree has a root
-	if not tree.tree_root:
-		return "Hand AnimationTree has no root"
-
-	# Passed basic validation
-	return ""
+	# Return warnings
+	return warnings
 
 
 ## Find an [XRToolsHand] node.

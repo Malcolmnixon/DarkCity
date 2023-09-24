@@ -117,19 +117,17 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, disabled: bo
 
 	# If wings impulse is active, calculate flapping impulse
 	if wings_impulse:
-		# Get head position
-		var camera_position := _camera_node.global_transform.origin
-
 		# Check controllers position relative to head
-		var left_hand_over_head = camera_position.y < left_position.y + rearm_distance_offset
-		var right_hand_over_head = camera_position.y < right_position.y + rearm_distance_offset
+		var cam_local_y := _camera_node.position.y
+		var left_hand_over_head = cam_local_y < _left_controller.position.y + rearm_distance_offset
+		var right_hand_over_head = cam_local_y < _right_controller.position.y + rearm_distance_offset
 		if left_hand_over_head && right_hand_over_head:
 			flap_armed = true
 
 		if flap_armed:
 			# Get controller local positions
-			var local_left_position := _left_controller.transform.origin
-			var local_right_position := _right_controller.transform.origin
+			var local_left_position := _left_controller.position
+			var local_right_position := _right_controller.position
 
 			# Store last frame controller positions for the first step
 			if not _has_controller_positions:
@@ -156,19 +154,19 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, disabled: bo
 			last_local_left_position = local_left_position
 			last_local_right_position = local_right_position
 
-	# If not falling, then not gliding
-	var vertical_velocity := player_body.velocity.dot(player_body.up_gravity_vector)
-	vertical_velocity += wings_impulse_velocity
-	if vertical_velocity >= glide_min_fall_speed && wings_impulse_velocity == 0.0:
-		_set_gliding(false)
-		return
-
 	# Calculate global left to right controller vector
 	var left_to_right := right_position - left_position
 
 	if turn_with_roll:
-		var angle = -left_to_right.dot(player_body.up_player_vector)
+		var angle = -left_to_right.dot(player_body.up_player)
 		player_body.rotate_player(roll_turn_speed * delta * angle)
+
+	# If not falling, then not gliding
+	var vertical_velocity := player_body.velocity.dot(player_body.up_gravity)
+	vertical_velocity += wings_impulse_velocity
+	if vertical_velocity >= glide_min_fall_speed && wings_impulse_velocity == 0.0:
+		_set_gliding(false)
+		return
 
 	# Set gliding based on hand separation
 	var separation := left_to_right.length() / XRServer.world_scale
@@ -182,14 +180,16 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, disabled: bo
 	vertical_velocity = lerp(vertical_velocity, glide_fall_speed, vertical_slew_rate * delta)
 
 	# Lerp the horizontal velocity towards forward_speed
-	var horizontal_velocity := player_body.up_gravity_plane.project(player_body.velocity)
-	var dir_forward := player_body.up_gravity_plane.project(
-			left_to_right.rotated(player_body.up_gravity_vector, PI/2)).normalized()
+	var horizontal_velocity := player_body.velocity.slide(player_body.up_gravity)
+	var dir_forward := left_to_right \
+			.rotated(player_body.up_gravity, PI/2) \
+			.slide(player_body.up_gravity) \
+			.normalized()
 	var forward_velocity := dir_forward * glide_forward_speed
 	horizontal_velocity = horizontal_velocity.lerp(forward_velocity, horizontal_slew_rate * delta)
 
 	# Perform the glide
-	var glide_velocity := horizontal_velocity + vertical_velocity * player_body.up_gravity_vector
+	var glide_velocity := horizontal_velocity + vertical_velocity * player_body.up_gravity
 	player_body.velocity = player_body.move_body(glide_velocity)
 
 	# Report exclusive motion performed (to bypass gravity)
@@ -213,22 +213,24 @@ func _set_gliding(active: bool) -> void:
 
 
 # This method verifies the movement provider has a valid configuration.
-func _get_configuration_warning():
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := super()
+
 	# Verify the left controller
 	if !XRHelpers.get_left_controller(self):
-		return "Unable to find left XRController3D node"
+		warnings.append("Unable to find left XRController3D node")
 
 	# Verify the right controller
 	if !XRHelpers.get_right_controller(self):
-		return "Unable to find right XRController3D node"
+		warnings.append("Unable to find right XRController3D node")
 
 	# Check glide parameters
 	if glide_min_fall_speed > 0:
-		return "Glide minimum fall speed must be zero or less"
+		warnings.append("Glide minimum fall speed must be zero or less")
 	if glide_fall_speed > 0:
-		return "Glide fall speed must be zero or less"
+		warnings.append("Glide fall speed must be zero or less")
 	if glide_min_fall_speed < glide_fall_speed:
-		return "Glide fall speed must be faster than minimum fall speed"
+		warnings.append("Glide fall speed must be faster than minimum fall speed")
 
-	# Call base class
-	return super()
+	# Return warnings
+	return warnings

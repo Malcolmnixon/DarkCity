@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://csskw1hx1lf2r"]
 
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/climbable.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cjyilbm4ucc7s" path="res://addons/godot-xr-tools/objects/climbable.tscn" id="1_hch4h"]
 [ext_resource type="Material" path="res://DarkCity/Materials/SkyScraper.tres" id="2"]
 [ext_resource type="Material" uid="uid://bd8qrnrf6nod5" path="res://DarkCity/Materials/Concrete.tres" id="3_6q1v2"]
 
@@ -20,22 +20,24 @@ size = Vector3(40, 4, 40)
 
 [node name="SkyScraper1" type="Node3D"]
 
-[node name="Tower" type="StaticBody3D" parent="."]
+[node name="Tower" parent="." instance=ExtResource("1_hch4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
-script = ExtResource("1")
+collision_layer = 262161
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tower"]
 shape = SubResource("1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Tower"]
 mesh = SubResource("2")
+skeleton = NodePath("")
 
-[node name="Roof" type="StaticBody3D" parent="."]
+[node name="Roof" parent="." instance=ExtResource("1_hch4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 162, 0)
-script = ExtResource("1")
+collision_layer = 262161
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Roof"]
 shape = SubResource("4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Roof"]
 mesh = SubResource("5")
+skeleton = NodePath("")

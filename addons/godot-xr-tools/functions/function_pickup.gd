@@ -21,6 +21,12 @@ signal has_picked_up(what)
 signal has_dropped
 
 
+# Default pickup collision mask of 3:pickable and 19:handle
+const DEFAULT_GRAB_MASK := 0b0000_0000_0000_0100_0000_0000_0000_0100
+
+# Default pickup collision mask of 3:pickable
+const DEFAULT_RANGE_MASK := 0b0000_0000_0000_0000_0000_0000_0000_0100
+
 # Constant for worst-case grab distance
 const MAX_GRAB_DISTANCE2: float = 1000000.0
 
@@ -38,7 +44,8 @@ const MAX_GRAB_DISTANCE2: float = 1000000.0
 @export var grab_distance : float = 0.3: set = _set_grab_distance
 
 ## Grab collision mask
-@export_flags_3d_physics var grab_collision_mask : int = 1: set = _set_grab_collision_mask
+@export_flags_3d_physics \
+		var grab_collision_mask : int = DEFAULT_GRAB_MASK: set = _set_grab_collision_mask
 
 ## If true, ranged-grabbing is enabled
 @export var ranged_enable : bool = true
@@ -50,7 +57,8 @@ const MAX_GRAB_DISTANCE2: float = 1000000.0
 @export_range(0.0, 45.0) var ranged_angle : float = 5.0: set = _set_ranged_angle
 
 ## Ranged-grab collision mask
-@export_flags_3d_physics var ranged_collision_mask : int = 1: set = _set_ranged_collision_mask
+@export_flags_3d_physics \
+		var ranged_collision_mask : int = DEFAULT_RANGE_MASK: set = _set_ranged_collision_mask
 
 ## Throw impulse factor
 @export var impulse_factor : float = 1.0
@@ -133,8 +141,8 @@ func _ready():
 	_update_colliders()
 
 	# Monitor Grab Button
-	get_parent().connect("button_pressed", _on_button_pressed)
-	get_parent().connect("button_released", _on_button_released)
+	_controller.connect("button_pressed", _on_button_pressed)
+	_controller.connect("button_released", _on_button_released)
 
 
 # Called on each frame to update the pickup
@@ -308,12 +316,12 @@ func _update_closest_object() -> void:
 
 	# remove highlight on old object
 	if is_instance_valid(closest_object):
-		closest_object.decrease_is_closest()
+		closest_object.request_highlight(self, false)
 
 	# add highlight to new object
 	closest_object = new_closest_obj
 	if is_instance_valid(closest_object):
-		closest_object.increase_is_closest()
+		closest_object.request_highlight(self, true)
 
 
 # Find the pickable object closest to our hand's grab location
@@ -397,6 +405,7 @@ func _pick_up_object(target: Node3D) -> void:
 
 	# If object picked up then emit signal
 	if is_instance_valid(picked_up_object):
+		picked_up_object.request_highlight(self, false)
 		emit_signal("has_picked_up", picked_up_object)
 
 

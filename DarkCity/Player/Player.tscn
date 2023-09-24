@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://3qbpjqmd6467"]
+[gd_scene load_steps=31 format=3 uid="uid://3qbpjqmd6467"]
 
 [ext_resource type="PackedScene" uid="uid://chumpejwiub7f" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_tac_glove_low.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bx1xdisoqo1f6" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_tac_glove_low.tscn" id="3"]
@@ -22,8 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d2yejwiwab3wv" path="res://addons/godot-xr-tools/examples/fall_damage.tscn" id="21"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="22"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="23"]
-[ext_resource type="Material" path="res://DarkCity/Materials/Rope.tres" id="25"]
-[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" id="27"]
+[ext_resource type="PackedScene" uid="uid://0xlsitpu17r1" path="res://addons/godot-xr-tools/functions/movement_footstep.tscn" id="27"]
 [ext_resource type="Resource" path="res://DarkCity/Sounds/concrete_walk.tres" id="28"]
 
 [sub_resource type="BoxMesh" id="1"]
@@ -37,11 +36,6 @@ albedo_color = Color(0, 0, 0, 0)
 
 [sub_resource type="QuadMesh" id="6"]
 size = Vector2(0.001, 0.001)
-
-[sub_resource type="BoxMesh" id="7"]
-resource_local_to_scene = true
-size = Vector3(0.05, 0.05, 0.05)
-subdivide_depth = 20
 
 [sub_resource type="StandardMaterial3D" id="3"]
 blend_mode = 1
@@ -107,6 +101,7 @@ strafe = true
 enabled = false
 
 [node name="MovementJump" parent="LeftHandController" instance=ExtResource("7")]
+jump_button_action = "ax_button"
 enabled = false
 
 [node name="RightHandController" type="XRController3D" parent="."]
@@ -119,6 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999879, -0.0155503, 0, 0.0155503, 0.999879
 hand_material_override = ExtResource("4_amysp")
 
 [node name="FunctionPointer" parent="RightHandController" instance=ExtResource("22")]
+show_laser = 2
 laser_length = 1
 
 [node name="FunctionPickup" parent="RightHandController" instance=ExtResource("4")]
@@ -134,13 +130,8 @@ grapple_length = 50.0
 impulse_speed = 20.0
 enabled = false
 
-[node name="Grapple_Target" parent="RightHandController/MovementGrapple" index="1"]
-mesh = SubResource("7")
-
-[node name="Line" parent="RightHandController/MovementGrapple/LineHelper" index="0"]
-material = ExtResource("25")
-
 [node name="MovementJump" parent="RightHandController" instance=ExtResource("7")]
+jump_button_action = "ax_button"
 enabled = false
 
 [node name="PlayerBody" parent="." instance=ExtResource("12")]
@@ -152,7 +143,6 @@ fling_multiplier = 2.0
 enabled = false
 
 [node name="MovementGlide" parent="." instance=ExtResource("6")]
-turn_with_roll = true
 roll_turn_speed = 2.0
 enabled = false
 
@@ -195,7 +185,6 @@ process_material = SubResource("4")
 draw_pass_1 = SubResource("5")
 
 [node name="MovementFootstep" parent="." instance=ExtResource("27")]
-audio_db = -30.0
 default_surface_audio_type = ExtResource("28")
 steps_per_meter = 1.5
 
@@ -204,5 +193,3 @@ steps_per_meter = 1.5
 [connection signal="player_glide_end" from="MovementGlide" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_end"]
 [connection signal="player_glide_start" from="MovementGlide" to="PlayerLogic" method="_on_Function_Glide_movement_player_glide_start"]
 [connection signal="player_fall_damage" from="FallDamage" to="PlayerLogic" method="_on_Function_Fall_damage_player_fall_damage"]
-
-[editable path="RightHandController/MovementGrapple"]

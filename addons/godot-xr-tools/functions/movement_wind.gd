@@ -16,6 +16,10 @@ extends XRToolsMovementProvider
 signal wind_area_changed(active_wind_area)
 
 
+# Default wind area collision mask of 20:player-body
+const DEFAULT_MASK := 0b0000_0000_0000_1000_0000_0000_0000_0000
+
+
 ## Movement provider order
 @export var order : int = 25
 
@@ -23,7 +27,7 @@ signal wind_area_changed(active_wind_area)
 @export var drag_multiplier : float = 1.0
 
 # Set our collision mask
-@export_flags_3d_physics var collision_mask : int = 524288: set = set_collision_mask
+@export_flags_3d_physics var collision_mask : int = DEFAULT_MASK: set = set_collision_mask
 
 
 # Wind detection area
@@ -129,9 +133,3 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, _disabled: b
 	var drag_factor := _active_wind_area.drag * drag_multiplier * delta
 	drag_factor = clamp(drag_factor, 0.0, 1.0)
 	player_body.velocity = player_body.velocity.lerp(wind_velocity, drag_factor)
-
-
-# This method verifies the movement provider has a valid configuration.
-func _get_configuration_warning():
-	# Call base class
-	return super()

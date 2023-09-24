@@ -26,6 +26,13 @@ enum GrappleState {
 }
 
 
+# Default grapple collision mask of 1-5 (world)
+const DEFAULT_COLLISION_MASK := 0b0000_0000_0000_0000_0000_0000_0001_1111
+
+# Default grapple enable mask of 5:grapple-target
+const DEFAULT_ENABLE_MASK := 0b0000_0000_0000_0000_0000_0000_0001_0000
+
+
 ## Movement provider order
 @export var order : int = 20
 
@@ -33,7 +40,11 @@ enum GrappleState {
 @export var grapple_length : float = 15.0
 
 ## Grapple collision mask
-@export_flags_3d_physics var grapple_collision_mask : int = 1: set = _set_grapple_collision_mask
+@export_flags_3d_physics var grapple_collision_mask : int = DEFAULT_COLLISION_MASK:
+	set = _set_grapple_collision_mask
+
+## Grapple enable mask
+@export_flags_3d_physics var grapple_enable_mask : int = DEFAULT_ENABLE_MASK
 
 ## Impulse speed applied to the player on first grapple
 @export var impulse_speed : float = 10.0
@@ -98,7 +109,7 @@ func _ready():
 		grapple_length = min_hook_length
 
 	# Set ray-cast
-	_grapple_raycast.target_position = Vector3(0, 0, -grapple_length) * XRServer.world_scale #Is WS necessary here?
+	_grapple_raycast.target_position = Vector3(0, 0, -grapple_length) * XRServer.world_scale
 	_grapple_raycast.collision_mask = grapple_collision_mask
 
 	# Deal with line
@@ -123,7 +134,8 @@ func _process(_delta: float):
 		_line.visible = false
 
 	# Update grapple target
-	if enabled and !is_active and _grapple_raycast.is_colliding():
+	$Grapple_RayCast.force_raycast_update()
+	if enabled and !is_active and _is_raycast_valid():
 		_grapple_target.global_transform.origin  = _grapple_raycast.get_collision_point()
 		_grapple_target.global_transform = _grapple_target.global_transform.orthonormalized()
 		_grapple_target.visible = true
@@ -146,7 +158,7 @@ func physics_movement(delta: float, player_body: XRToolsPlayerBody, disabled: bo
 	var do_impulse := false
 	if is_active and !_grapple_button:
 		_set_grappling(false)
-	elif _grapple_button and !old_grapple_button and _grapple_raycast.is_colliding():
+	elif _grapple_button and !old_grapple_button and _is_raycast_valid():
 		hook_object = _grapple_raycast.get_collider()
 		hook_point = _grapple_raycast.get_collision_point()
 		hook_local = hook_point * hook_object.global_transform
@@ -207,11 +219,28 @@ func _set_grappling(active: bool) -> void:
 		emit_signal("grapple_finished")
 
 
+# Test if the raycast is striking a valid target
+func _is_raycast_valid() -> bool:
+	# Fail if raycast not colliding
+	var t = _grapple_raycast.get_collider()
+	var c = _grapple_raycast.is_colliding()
+	if not _grapple_raycast.is_colliding():
+		return false
+
+	# Get the target of the raycast
+	var target : CollisionObject3D = _grapple_raycast.get_collider()
+
+	# Check tartget layer
+	return true if target.collision_layer & grapple_enable_mask else false
+
+
 # This method verifies the movement provider has a valid configuration.
-func _get_configuration_warning():
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := super()
+
 	# Check the controller node
 	if !XRHelpers.get_xr_controller(self):
-		return "This node must be within a branch of an XRController3D node"
+		warnings.append("This node must be within a branch of an XRController3D node")
 
-	# Call base class
-	return super()
+	# Return warnings
+	return warnings
